@@ -42,7 +42,7 @@ pub struct StringLit {
     pub wide: bool,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Expr<'a> {
     Ident(&'a str),
     IntConst(IntConst),
@@ -80,7 +80,7 @@ pub enum Expr<'a> {
     Mul(Box<Node<Self>>, Box<Node<Self>>),
     Div(Box<Node<Self>>, Box<Node<Self>>),
     Mod(Box<Node<Self>>, Box<Node<Self>>),
-    // Cast(Box<Node<Type<'a>>>, Box<Node<Self>>),
+    Cast(Node<TypeName<'a>>, Box<Node<Self>>),
     UnInc(Box<Node<Self>>),
     UnDec(Box<Node<Self>>),
     Ref(Box<Node<Self>>),
@@ -90,6 +90,7 @@ pub enum Expr<'a> {
     BwNot(Box<Node<Self>>),
     LcNot(Box<Node<Self>>),
     SizeOfE(Box<Node<Self>>),
+    SizeOfT(Node<TypeName<'a>>),
     Index(Box<Node<Self>>, Box<Node<Self>>),
     FnCall(Box<Node<Self>>, Vec<Node<Self>>),
     PfInc(Box<Node<Self>>),
@@ -123,13 +124,26 @@ impl TypeQual {
     const _RESTR: u8 = 0b010;
     const _VOLAT: u8 = 0b100;
 
-    const CONST: Self = Self(Self::_CONST);
-    const RESTRICT: Self = Self(Self::_RESTR);
-    const VOLATILE: Self = Self(Self::_VOLAT);
+    pub const CONST: Self = Self(Self::_CONST);
+    pub const RESTRICT: Self = Self(Self::_RESTR);
+    pub const VOLATILE: Self = Self(Self::_VOLAT);
+}
+
+impl core::ops::BitOr for TypeQual {
+    type Output = Self;
+
+    fn bitor(self, rhs: Self) -> Self::Output {
+        Self(self.0 | rhs.0)
+    }
+}
+
+pub enum TypeSpecOrQual<'a> {
+    Spec(TypeSpec<'a>),
+    Qual(TypeQual),
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub struct Type<'a> {
+pub struct TypeSpecQual<'a> {
     pub base_type: BaseType<'a>,
     pub qual: TypeQual,
 }
@@ -149,6 +163,7 @@ pub enum BaseType<'a> {
     ULongLong,
     Float,
     Double,
+    LongDouble,
     Struct(&'a str),
     Union(&'a str),
     Enum(&'a str),
@@ -156,7 +171,7 @@ pub enum BaseType<'a> {
 }
 
 impl<'a> BaseType<'a> {
-    pub fn from_type_specs<TS: Iterator<Item = &TypeSpec<'a>>>(mut ts: TS) -> Result<Self, &'static str> {
+    pub fn from_type_specs<TS: Iterator<Item = TypeSpec<'a>>>(mut ts: TS) -> Result<Self, &'static str> {
         let mut base = None;
         let mut shorts = 0;
         let mut longs = 0;
@@ -172,7 +187,7 @@ impl<'a> BaseType<'a> {
                 TypeSpec::Unsigned if !unsigned => unsigned = true,
                 TypeSpec::Unsigned => return Err(">1 `unsigned`"),
                 _ if base.is_none() => base = Some(s),
-                _ => return Err(">1 base type"),
+                _ => return Err("<2 base type"),
             }
         }
 
@@ -180,8 +195,45 @@ impl<'a> BaseType<'a> {
             return Err("both signed and unsigned specified");
         }
 
-        match (base, shorts, longs, unsigned) {
+        match (base.unwrap_or(TypeSpec::Int), shorts, longs, signed, unsigned) {
+            (TypeSpec::Int, 0, 0, _, false) => Ok(BaseType::SInt),
+            (TypeSpec::Int, 0, 0, _, true) => Ok(BaseType::UInt),
+            (TypeSpec::Int, 0, 1, _, false) => Ok(BaseType::SLong),
+            (TypeSpec::Int, 0, 1, _, true) => Ok(BaseType::ULong),
+            (TypeSpec::Int, 0, 2, _, false) => Ok(BaseType::SLongLong),
+            (TypeSpec::Int, 0, 2, _, true) => Ok(BaseType::ULongLong),
+            (TypeSpec::Int, 1, 0, _, false) => Ok(BaseType::SShort),
+            (TypeSpec::Int, 1, 0, _, true) => Ok(BaseType::UShort),
+            (TypeSpec::Char, 0, 0, _, false) => Ok(BaseType::SChar),
+            (TypeSpec::Char, 0, 0, _, true) => Ok(BaseType::UChar),
+            (TypeSpec::Float, 0, 0, false, false) => Ok(BaseType::Float),
+            (TypeSpec::Double, 0, 0, false, false) => Ok(BaseType::Double),
+            (TypeSpec::Double, 0, 1, false, false) => Ok(BaseType::LongDouble),
+            (TypeSpec::Void, 0, 0, false, false) => Ok(BaseType::Void),
+            (TypeSpec::Struct(s), 0, 0, false, false) => Ok(BaseType::Struct(s)),
+            (TypeSpec::Union(s), 0, 0, false, false) => Ok(BaseType::Union(s)),
+            (TypeSpec::Enum(s), 0, 0, false, false) => Ok(BaseType::Enum(s)),
+            (TypeSpec::TypedefName(s), 0, 0, false, false) => Ok(BaseType::TypedefName(s)),
             _ => Err("no such type"),
         }
     }
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct TypeName<'a> {
+    pub type_sq: TypeSpecQual<'a>,
+    // pub abs_decl: Vec<AbstractDecl<'a>>,
+}
+
+// #[derive(Debug, Clone, PartialEq, Eq)]
+// pub enum AbstractDecl<'a> {
+//     Pointer,
+//     Array(Option<Expr<'a>>),
+// }
+
+#[derive(Debug, Clone)]
+pub struct Declaration<'a> {
+    // TODO: storage class & func spec
+    pub typ: Node<TypeName<'a>>,
+    pub inits: Vec<(&'a str, Option<Node<Expr<'a>>>)>,
 }

@@ -1,1 +1,1 @@
-(errno = EINVAL, -1)
+int x = 0;
