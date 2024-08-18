@@ -6,7 +6,7 @@ peg::parser! {
 
         // temp testing thing
         pub rule numbers() -> Vec<Node<Declaration<'input>>>
-            = l:(declaration()*) "\n"? { l }
+            = _ l:(declaration() ** _) _ { l }
 
         // utilities
         rule hex_digits()
@@ -183,6 +183,7 @@ peg::parser! {
             / "double" { TypeSpec::Double }
             / "signed" { TypeSpec::Signed }
             / "unsigned" { TypeSpec::Unsigned }
+            / "_Bool" { TypeSpec::Bool }
             / "struct" i:ident() { TypeSpec::Struct(i) }
             / "union" i:ident() { TypeSpec::Union(i) }
             / "enum" i:ident() { TypeSpec::Enum(i) }
@@ -192,7 +193,7 @@ peg::parser! {
             = q:type_qual() { TypeSpecOrQual::Qual(q) }
             / s:type_spec() { TypeSpecOrQual::Spec(s) };
         rule spec_qual_list() -> TypeSpecQual<'input>
-            = sq:(type_spec_or_qual() ++ (wsm() !ident())) {?
+            = sq:(type_spec_or_qual() ++ (wsm() !ident())) {? // NOTE: `qual()+ TypedefName` no work
                 Ok(TypeSpecQual {
                     base_type: BaseType::from_type_specs(sq.iter().filter_map(|f|
                         if let TypeSpecOrQual::Spec(s) = f { Some(*s) } else { None })

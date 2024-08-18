@@ -106,6 +106,7 @@ pub enum TypeSpec<'a> {
     Short,
     Int,
     Long,
+    Bool,
     Float,
     Double,
     Signed,
@@ -161,6 +162,7 @@ pub enum BaseType<'a> {
     UInt,
     ULong,
     ULongLong,
+    Bool,
     Float,
     Double,
     LongDouble,
@@ -196,6 +198,8 @@ impl<'a> BaseType<'a> {
         }
 
         match (base.unwrap_or(TypeSpec::Int), shorts, longs, signed, unsigned) {
+            (TypeSpec::Void, 0, 0, false, false) => Ok(BaseType::Void),
+            (TypeSpec::Bool, 0, 0, false, false) => Ok(BaseType::Bool),
             (TypeSpec::Int, 0, 0, _, false) => Ok(BaseType::SInt),
             (TypeSpec::Int, 0, 0, _, true) => Ok(BaseType::UInt),
             (TypeSpec::Int, 0, 1, _, false) => Ok(BaseType::SLong),
@@ -209,7 +213,6 @@ impl<'a> BaseType<'a> {
             (TypeSpec::Float, 0, 0, false, false) => Ok(BaseType::Float),
             (TypeSpec::Double, 0, 0, false, false) => Ok(BaseType::Double),
             (TypeSpec::Double, 0, 1, false, false) => Ok(BaseType::LongDouble),
-            (TypeSpec::Void, 0, 0, false, false) => Ok(BaseType::Void),
             (TypeSpec::Struct(s), 0, 0, false, false) => Ok(BaseType::Struct(s)),
             (TypeSpec::Union(s), 0, 0, false, false) => Ok(BaseType::Union(s)),
             (TypeSpec::Enum(s), 0, 0, false, false) => Ok(BaseType::Enum(s)),
