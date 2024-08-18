@@ -6,7 +6,7 @@ peg::parser! {
 
         // temp testing thing
         pub rule numbers() -> Vec<Node<Expr<'input>>>
-            = l:(expr() ** "$") "\n"? { l }
+            = l:(expr() ** ";") "\n"? { l }
 
         // utilities
         rule hex_digits()
@@ -14,6 +14,8 @@ peg::parser! {
 
         rule ws()
             = quiet!{[' ' | '\n' | '\t']* ("/*" b_comment_c()* "*/" ws())? ("//" [^ '\n']* ws())? }
+        rule wsm()
+            = quiet!{[' ' | '\n' | '\t']+ ("/*" b_comment_c()* "*/" ws())? ("//" [^ '\n']* ws())? }
         rule b_comment_c()
             = [^ '*']
             / "*" !"/";
@@ -88,13 +90,34 @@ peg::parser! {
         rule prim_expr() -> Node<Expr<'input>>
             = ws() s:position!() node:_prim_expr() e:position!() ws() { Node { node, span: s..e } };
         rule _prim_expr() -> Expr<'input>
-            = id:ident() { Expr::Ident(id) }
-            / ic:int_const() { Expr::IntConst(ic) }
-            / cc:char_const() { Expr::CharConst(cc) }
+            = cc:char_const() { Expr::CharConst(cc) }
             / sl:string_lit() { Expr::StringLit(sl) }
+            / ic:int_const() { Expr::IntConst(ic) }
+            / id:ident() { Expr::Ident(id) }
             / "(" ex: expr() ")" { ex.node };
 
-        rule expr() -> Node<Expr<'input>> = precedence! {
+        rule expr() -> Node<Expr<'input>>
+            = e:(assign_expr() ++ (ws() "," ws())) { if e.len() == 1 {
+                let mut e = e;
+                e.swap_remove(0)
+            } else {
+                Node { span: e[0].span.start..e.last().unwrap().span.end, node: Expr::Comma(e) }
+            }};
+        rule assign_expr() -> Node<Expr<'input>> = precedence! {
+            l:@ ws() "=" ws() r:(@) { Node { span: l.span.start..r.span.end, node: Expr::Assign(Box::new(l), Box::new(r)) } }
+            l:@ ws() "+=" ws() r:(@) { Node { span: l.span.start..r.span.end, node: Expr::AddAssign(Box::new(l), Box::new(r)) } }
+            l:@ ws() "-=" ws() r:(@) { Node { span: l.span.start..r.span.end, node: Expr::SubAssign(Box::new(l), Box::new(r)) } }
+            l:@ ws() "*=" ws() r:(@) { Node { span: l.span.start..r.span.end, node: Expr::MulAssign(Box::new(l), Box::new(r)) } }
+            l:@ ws() "/=" ws() r:(@) { Node { span: l.span.start..r.span.end, node: Expr::DivAssign(Box::new(l), Box::new(r)) } }
+            l:@ ws() "%=" ws() r:(@) { Node { span: l.span.start..r.span.end, node: Expr::ModAssign(Box::new(l), Box::new(r)) } }
+            l:@ ws() "<<=" ws() r:(@) { Node { span: l.span.start..r.span.end, node: Expr::LshAssign(Box::new(l), Box::new(r)) } }
+            l:@ ws() ">>=" ws() r:(@) { Node { span: l.span.start..r.span.end, node: Expr::RshAssign(Box::new(l), Box::new(r)) } }
+            l:@ ws() "&=" ws() r:(@) { Node { span: l.span.start..r.span.end, node: Expr::AndAssign(Box::new(l), Box::new(r)) } }
+            l:@ ws() "^=" ws() r:(@) { Node { span: l.span.start..r.span.end, node: Expr::XorAssign(Box::new(l), Box::new(r)) } }
+            l:@ ws() "|=" ws() r:(@) { Node { span: l.span.start..r.span.end, node: Expr::OrAssign(Box::new(l), Box::new(r)) } }
+            --
+            c:@ ws() "?" ws() l:expr() ws() ":" ws() r:(@) { Node { span: c.span.start..r.span.end, node: Expr::Ternary(Box::new(c), Box::new(l), Box::new(r)) } }
+            --
             l:(@) ws() "||" ws() r:@ { Node { span: l.span.start..r.span.end, node: Expr::LcOr(Box::new(l), Box::new(r)) } }
             --
             l:(@) ws() "&&" ws() r:@ { Node { span: l.span.start..r.span.end, node: Expr::LcAnd(Box::new(l), Box::new(r)) } }
@@ -113,8 +136,8 @@ peg::parser! {
             l:(@) ws() ">" ws() r:@ { Node { span: l.span.start..r.span.end, node: Expr::Gt(Box::new(l), Box::new(r)) } }
             l:(@) ws() ">=" ws() r:@ { Node { span: l.span.start..r.span.end, node: Expr::Ge(Box::new(l), Box::new(r)) } }
             --
-            l:(@) ws() "<<" ws() r:@ { Node { span: l.span.start..r.span.end, node: Expr::BwLsh(Box::new(l), Box::new(r)) } }
-            l:(@) ws() ">>" ws() r:@ { Node { span: l.span.start..r.span.end, node: Expr::BwRsh(Box::new(l), Box::new(r)) } }
+            l:(@) ws() "<<" ws() r:@ { Node { span: l.span.start..r.span.end, node: Expr::Lsh(Box::new(l), Box::new(r)) } }
+            l:(@) ws() ">>" ws() r:@ { Node { span: l.span.start..r.span.end, node: Expr::Rsh(Box::new(l), Box::new(r)) } }
             --
             l:(@) ws() "+" ws() r:@ { Node { span: l.span.start..r.span.end, node: Expr::Add(Box::new(l), Box::new(r)) } }
             l:(@) ws() "-" ws() r:@ { Node { span: l.span.start..r.span.end, node: Expr::Sub(Box::new(l), Box::new(r)) } }
@@ -122,6 +145,27 @@ peg::parser! {
             l:(@) ws() "*" ws() r:@ { Node { span: l.span.start..r.span.end, node: Expr::Mul(Box::new(l), Box::new(r)) } }
             l:(@) ws() "/" ws() r:@ { Node { span: l.span.start..r.span.end, node: Expr::Div(Box::new(l), Box::new(r)) } }
             l:(@) ws() "%" ws() r:@ { Node { span: l.span.start..r.span.end, node: Expr::Mod(Box::new(l), Box::new(r)) } }
+            --
+            // TODO: (type-name) expr cast
+            // --
+            l:position!() ws() "++" ws() x:(@) { Node { span: l..x.span.right, node: Expr::UnInc(Box::new(x)) } }
+            l:position!() ws() "--" ws() x:(@) { Node { span: l..x.span.right, node: Expr::UnInc(Box::new(x)) } }
+            l:position!() ws() "&" ws() x:(@) { Node { span: l..x.span.right, node: Expr::Ref(Box::new(x)) } }
+            l:position!() ws() "*" ws() x:(@) { Node { span: l..x.span.right, node: Expr::Deref(Box::new(x)) } }
+            l:position!() ws() "+" ws() x:(@) { Node { span: l..x.span.right, node: Expr::Pos(Box::new(x)) } }
+            l:position!() ws() "-" ws() x:(@) { Node { span: l..x.span.right, node: Expr::Neg(Box::new(x)) } }
+            l:position!() ws() "~" ws() x:(@) { Node { span: l..x.span.right, node: Expr::BwNot(Box::new(x)) } }
+            l:position!() ws() "!" ws() x:(@) { Node { span: l..x.span.right, node: Expr::LcNot(Box::new(x)) } }
+            l:position!() ws() "sizeof" wsm() x:(@) { Node { span: l..x.span.right, node: Expr::SizeOfE(Box::new(x)) } }
+            // TODO: sizeof(type)
+            --
+            x:(@) ws() "[" ws() i:expr() ws() "]" r:position!() { Node { span: x.span.start..r, node: Expr::Index(Box::new(x), Box::new(i)) } }
+            x:(@) ws() "(" ws() i:(assign_expr() ** (ws() "," ws())) ws() ")" r:position!() { Node { span: x.span.start..r, node: Expr::FnCall(Box::new(x), i) } }
+            x:(@) ws() "++" r:position!() { Node { span: x.span.left..r, node: Expr::PfInc(Box::new(x)) } }
+            x:(@) ws() "--" r:position!() { Node { span: x.span.left..r, node: Expr::PfDec(Box::new(x)) } }
+            x:(@) ws() "." ws() i:ident() r:position!() { Node { span: x.span.left..r, node: Expr::Dot(Box::new(x), i) } }
+            x:(@) ws() "->" ws() i:ident() r:position!() { Node { span: x.span.left..r, node: Expr::Arrow(Box::new(x), i) } }
+            // TODO: {init} initialization
             --
             e:prim_expr() { e }
         };
@@ -144,8 +188,8 @@ peg::parser! {
 
         // 6.7.3 type qualifiers
         rule type_qual() -> TypeQual
-            = "const" { TypeQual::Const }
-            / "restrict" { TypeQual::Restrict }
-            / "volatile" { TypeQual::Volatile };
+            = "const" { TypeQual::CONST }
+            / "restrict" { TypeQual::RESTRICT }
+            / "volatile" { TypeQual::VOLATILE };
     }
 }
