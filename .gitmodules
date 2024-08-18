@@ -1,0 +1,3 @@
+[submodule "funnssa"]
+	path = funnssa
+	url = git@github.com:funnsam/funnssa

@@ -1,0 +1,8 @@
+[package]
+name = "smolcc"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+funnssa = { version = "0.1.0", path = "funnssa" }
+peg = "0.8.4"
