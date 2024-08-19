@@ -97,7 +97,7 @@ pub enum Expr<'a> {
     Arrow(Box<Node<Self>>, &'a str),
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone)]
 pub enum TypeSpec<'a> {
     Void,
     Char,
@@ -109,9 +109,9 @@ pub enum TypeSpec<'a> {
     Double,
     Signed,
     Unsigned,
-    Struct(&'a str),
-    Union(&'a str),
-    Enum(&'a str),
+    Struct(Option<&'a str>, Option<Vec<StructItem<'a>>>),
+    Union(Option<&'a str>, Option<Vec<StructItem<'a>>>),
+    Enum(Option<&'a str>, Option<Vec<EnumItem<'a>>>),
     TypedefName(&'a str),
 }
 
@@ -133,7 +133,7 @@ pub(crate) enum DeclSpecToken<'a> {
     FunctionSpec(FunctionSpec),
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone)]
 pub struct DeclarationSpec<'a> {
     pub base_type: BaseType<'a>,
     pub qual: TypeQual,
@@ -141,7 +141,7 @@ pub struct DeclarationSpec<'a> {
     pub fn_spec: FunctionSpec,
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone)]
 pub enum BaseType<'a> {
     Void,
     SChar,
@@ -158,10 +158,23 @@ pub enum BaseType<'a> {
     Float,
     Double,
     LongDouble,
-    Struct(&'a str),
-    Union(&'a str),
-    Enum(&'a str),
+    Struct(Option<&'a str>, Option<Vec<StructItem<'a>>>),
+    Union(Option<&'a str>, Option<Vec<StructItem<'a>>>),
+    Enum(Option<&'a str>, Option<Vec<EnumItem<'a>>>),
     TypedefName(&'a str),
+}
+
+#[derive(Debug, Clone)]
+pub struct StructItem<'a> {
+    pub typ: Node<DeclarationSpec<'a>>,
+    pub item: Option<Node<Declarator<'a>>>,
+    pub bits: Option<Node<Expr<'a>>>,
+}
+
+#[derive(Debug, Clone)]
+pub struct EnumItem<'a> {
+    pub ident: &'a str,
+    pub number: Option<Node<Expr<'a>>>,
 }
 
 impl<'a> BaseType<'a> {
@@ -205,9 +218,9 @@ impl<'a> BaseType<'a> {
             (TypeSpec::Float, 0, 0, false, false) => Ok(BaseType::Float),
             (TypeSpec::Double, 0, 0, false, false) => Ok(BaseType::Double),
             (TypeSpec::Double, 0, 1, false, false) => Ok(BaseType::LongDouble),
-            (TypeSpec::Struct(s), 0, 0, false, false) => Ok(BaseType::Struct(s)),
-            (TypeSpec::Union(s), 0, 0, false, false) => Ok(BaseType::Union(s)),
-            (TypeSpec::Enum(s), 0, 0, false, false) => Ok(BaseType::Enum(s)),
+            (TypeSpec::Struct(s, i), 0, 0, false, false) => Ok(BaseType::Struct(s, i)),
+            (TypeSpec::Union(s, i), 0, 0, false, false) => Ok(BaseType::Union(s, i)),
+            (TypeSpec::Enum(s, i), 0, 0, false, false) => Ok(BaseType::Enum(s, i)),
             (TypeSpec::TypedefName(s), 0, 0, false, false) => Ok(BaseType::TypedefName(s)),
             _ => Err("no such type"),
         }
@@ -224,16 +237,16 @@ pub enum TypeName<'a> {
 
 #[derive(Debug, Clone)]
 pub struct Declaration<'a> {
-    pub typ: Node<TypeName<'a>>,
-    pub inits: Vec<(Declarator<'a>, Option<Node<Expr<'a>>>)>,
+    pub typ: Node<DeclarationSpec<'a>>,
+    pub inits: Vec<(Node<Declarator<'a>>, Option<Node<Expr<'a>>>)>,
 }
 
 #[derive(Debug, Clone)]
 pub enum Declarator<'a> {
     Ident(&'a str),
-    Pointer(Box<Self>),
-    Array(Box<Self>, TypeQual, Option<Node<Expr<'a>>>),
-    Function(Box<Self>, Vec<Node<ParamDeclaration<'a>>>),
+    Pointer(Box<Node<Self>>),
+    Array(Box<Node<Self>>, TypeQual, Option<Node<Expr<'a>>>),
+    Function(Box<Node<Self>>, Vec<Node<ParamDeclaration<'a>>>),
 }
 
 #[derive(Debug, Clone)]
@@ -245,13 +258,13 @@ pub enum AbsDeclarator<'a> {
 
 #[derive(Debug, Clone)]
 pub struct ParamDeclaration<'a> {
-    pub spec: DeclarationSpec<'a>,
+    pub spec: Node<DeclarationSpec<'a>>,
     pub decl: MayAbsDeclarator<'a>,
 }
 
 #[derive(Debug, Clone)]
 pub enum MayAbsDeclarator<'a> {
-    NonAbs(Declarator<'a>),
+    NonAbs(Node<Declarator<'a>>),
     AbsDecl(Option<AbsDeclarator<'a>>),
 }
 
@@ -286,7 +299,7 @@ pub enum ExternalDecl<'a> {
 #[derive(Debug, Clone)]
 pub struct FunctionDef<'a> {
     pub decl_spec: DeclarationSpec<'a>,
-    pub declarator: Declarator<'a>,
+    pub declarator: Node<Declarator<'a>>,
     pub declarations: Vec<Node<Declaration<'a>>>,
     pub body: CompoundStmt<'a>,
 }
