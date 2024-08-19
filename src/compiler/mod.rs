@@ -14,11 +14,13 @@ peg::parser! {
 
         rule _
             = quiet!{[' ' | '\n' | '\t']* ("/*" b_comment_c()* "*/" _)? ("//" [^ '\n']* _)? }
-        rule wsm()
-            = quiet!{[' ' | '\n' | '\t']+ ("/*" b_comment_c()* "*/" _)? ("//" [^ '\n']* _)? }
         rule b_comment_c()
             = [^ '*']
             / "*" !"/";
+        rule __
+            = quiet!{&[' ' | '\n' | '\t' | '[' | ']' | '{' | '}' | '.' | '-' | '+' | '&' | '*' | '~' | '!' | '/' | '%' | '<' | '>' | '=' | '?' | ':' | ';' | ',' | '#']};
+        rule ___
+            = quiet!{ __ _ }
 
         rule ident() -> &'input str
             = quiet!{ _ i:$(['_' | 'a'..='z' | 'A'..='Z']['_' | '0'..='9' | 'a'..='z' | 'A'..='Z']*) _ {?
@@ -158,8 +160,8 @@ peg::parser! {
             l:position!() "-" _ x:(@) { Node { span: l..x.span.end, node: Expr::Neg(Box::new(x)) } }
             l:position!() "~" _ x:(@) { Node { span: l..x.span.end, node: Expr::BwNot(Box::new(x)) } }
             l:position!() "!" _ x:(@) { Node { span: l..x.span.end, node: Expr::LcNot(Box::new(x)) } }
-            l:position!() "sizeof" wsm() x:(@) { Node { span: l..x.span.end, node: Expr::SizeOfE(Box::new(x)) } }
-            l:position!() "sizeof" _ "(" _ t:type_name() _ ")" r:position!() { Node { span: l..r, node: Expr::SizeOfT(t) } }
+            l:position!() "sizeof" ___ x:(@) { Node { span: l..x.span.end, node: Expr::SizeOfE(Box::new(x)) } }
+            l:position!() "sizeof" ___ "(" _ t:type_name() _ ")" r:position!() { Node { span: l..r, node: Expr::SizeOfT(t) } }
             --
             x:(@) _ "[" _ i:expr() _ "]" r:position!() { Node { span: x.span.start..r, node: Expr::Index(Box::new(x), Box::new(i)) } }
             x:(@) _ "(" _ i:(assign_expr() ** (_ "," _)) _ ")" r:position!() { Node { span: x.span.start..r, node: Expr::FnCall(Box::new(x), i) } }
@@ -174,26 +176,26 @@ peg::parser! {
 
         // 6.7.2 type specifiers
         rule type_spec() -> TypeSpec<'input>
-            = "void" { TypeSpec::Void }
-            / "char" { TypeSpec::Char }
-            / "short" { TypeSpec::Short }
-            / "int" { TypeSpec::Int }
-            / "long" { TypeSpec::Long }
-            / "float" { TypeSpec::Float }
-            / "double" { TypeSpec::Double }
-            / "signed" { TypeSpec::Signed }
-            / "unsigned" { TypeSpec::Unsigned }
-            / "_Bool" { TypeSpec::Bool }
-            / "struct" i:ident() { TypeSpec::Struct(i) }
-            / "union" i:ident() { TypeSpec::Union(i) }
-            / "enum" i:ident() { TypeSpec::Enum(i) }
+            = "void" __ { TypeSpec::Void }
+            / "char" __ { TypeSpec::Char }
+            / "short" __ { TypeSpec::Short }
+            / "int" __ { TypeSpec::Int }
+            / "long" __ { TypeSpec::Long }
+            / "float" __ { TypeSpec::Float }
+            / "double" __ { TypeSpec::Double }
+            / "signed" __ { TypeSpec::Signed }
+            / "unsigned" __ { TypeSpec::Unsigned }
+            / "_Bool" __ { TypeSpec::Bool }
+            / "struct" __ i:ident() { TypeSpec::Struct(i) }
+            / "union" __ i:ident() { TypeSpec::Union(i) }
+            / "enum" __ i:ident() { TypeSpec::Enum(i) }
             / i:ident() { TypeSpec::TypedefName(i) };
 
         rule type_spec_or_qual() -> TypeSpecOrQual<'input>
             = q:type_qual() { TypeSpecOrQual::Qual(q) }
             / s:type_spec() { TypeSpecOrQual::Spec(s) };
         rule spec_qual_list() -> TypeSpecQual<'input>
-            = sq:(type_spec_or_qual() ++ (wsm() !ident())) {? // NOTE: `qual()+ TypedefName` no work
+            = sq:(type_spec_or_qual() ++ (___ !ident())) {? // NOTE: `qual()+ TypedefName` no work
                 Ok(TypeSpecQual {
                     base_type: BaseType::from_type_specs(sq.iter().filter_map(|f|
                         if let TypeSpecOrQual::Spec(s) = f { Some(*s) } else { None })
@@ -208,23 +210,53 @@ peg::parser! {
 
         // 6.7.3 type qualifiers
         rule type_qual() -> TypeQual
-            = "const" { TypeQual::CONST }
-            / "restrict" { TypeQual::RESTRICT }
-            / "volatile" { TypeQual::VOLATILE };
+            = "const" __ { TypeQual::CONST }
+            / "restrict" __ { TypeQual::RESTRICT }
+            / "volatile" __ { TypeQual::VOLATILE };
+        rule type_quals() -> TypeQual
+            = q:(type_qual() ** ___) { q.iter().fold(TypeQual::default(), |a, q| a | *q) };
 
         // 6.7.6 type names
-        // TODO: abstract-decl
         rule type_name() -> Node<TypeName<'input>>
-            = quiet!{ l:position!() type_sq:spec_qual_list() r:position!() { Node { node: TypeName { type_sq }, span: l..r } } }
-            / expected!("type");
+            = l:position!() node:_type_name() r:position!() { Node { node, span: l..r } };
+
+        rule _type_name_ptr() -> TypeName<'input> = precedence!{
+            t:(@) _ "*" _ q:(type_qual() ** ___) { TypeName::Pointer(Box::new(t), q.iter().fold(TypeQual::default(), |a, q| a | *q)) }
+            type_sq:spec_qual_list() { TypeName::TypeSpecQual(type_sq) }
+        };
+        rule _type_name() -> TypeName<'input> = quiet!{ precedence!{
+            t:(@) _ "[" _ s:assign_expr() _ "]" { TypeName::Array(Box::new(t), Some(Box::new(s))) }
+            t:(@) _ "[" _ "*" _ "]" { TypeName::Array(Box::new(t), None) }
+              // TODO: fn params
+            t:(@) _ "(" _ _ ")" { TypeName::Function(Box::new(t)) }
+            t:_type_name_ptr() { t }
+            "(" _ t:_type_name_ptr() _ ")" { t }
+        } } / expected!("type");
+
+        // 6.7.5
+        // rule param_decl() -> Node<ParamDecl>
+        //     = "h";
 
         // 6.7
+        // TODO: decl spec
         rule declaration() -> Node<Declaration<'input>>
             = s:position!() typ:type_name() _ inits:(decl_item() ** (_ "," _)) _ ";" e:position!() {
                 Node { node: Declaration { typ, inits }, span: s..e }
             };
-        rule decl_item() -> (&'input str, Option<Node<Expr<'input>>>)
-            = quiet!{ v:ident() _ "=" _ i:assign_expr() { (v, Some(i)) } }
-            / quiet!{ v:ident() { (v, None) } };
+        rule decl_item() -> (Declarator<'input>, Option<Node<Expr<'input>>>)
+            = quiet!{ v:declarator() _ "=" _ i:assign_expr() { (v, Some(i)) } }
+            / quiet!{ v:declarator() { (v, None) } }
+            / expected!("declaration item");
+        rule declarator() -> Declarator<'input> = precedence! {
+            "*" _ d:@ { Declarator::Pointer(Box::new(d)) }
+            --
+            d:@ _ "[" _ e:assign_expr()? _ "]" { Declarator::Array(Box::new(d), TypeQual::default(), e) }
+            d:@ _ "[" _ q:type_quals() ___ e:assign_expr()? _ "]" { Declarator::Array(Box::new(d), q, e) }
+              // TODO: fn params
+            d:@ _ "(" _ ")" { Declarator::Function(Box::new(d), vec![]) }
+            --
+            v:ident() { Declarator::Ident(v) }
+            "(" _ d:declarator() _ ")" { d }
+        };
     }
 }

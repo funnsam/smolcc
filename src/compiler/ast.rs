@@ -223,20 +223,23 @@ impl<'a> BaseType<'a> {
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub struct TypeName<'a> {
-    pub type_sq: TypeSpecQual<'a>,
-    // pub abs_decl: Vec<AbstractDecl<'a>>,
+pub enum TypeName<'a> {
+    TypeSpecQual(TypeSpecQual<'a>),
+    Pointer(Box<Self>, TypeQual),
+    Array(Box<Self>, Option<Box<Node<Expr<'a>>>>),
+    Function(Box<Self>),
 }
-
-// #[derive(Debug, Clone, PartialEq, Eq)]
-// pub enum AbstractDecl<'a> {
-//     Pointer,
-//     Array(Option<Expr<'a>>),
-// }
 
 #[derive(Debug, Clone)]
 pub struct Declaration<'a> {
-    // TODO: storage class & func spec
     pub typ: Node<TypeName<'a>>,
-    pub inits: Vec<(&'a str, Option<Node<Expr<'a>>>)>,
+    pub inits: Vec<(Declarator<'a>, Option<Node<Expr<'a>>>)>,
+}
+
+#[derive(Debug, Clone)]
+pub enum Declarator<'a> {
+    Ident(&'a str),
+    Pointer(Box<Self>),
+    Array(Box<Self>, TypeQual, Option<Node<Expr<'a>>>),
+    Function(Box<Self>, Vec<Node<Expr<'a>>>),
 }

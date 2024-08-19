@@ -11,7 +11,7 @@ fn main() {
 }
 
 fn report(e: peg::error::ParseError<peg::str::LineCol>, s: &str) {
-    println!("\x1b[1;31merror:\x1b[0m expected {}", e.expected);
-    println!("    {} | {}", e.location.line, s.split('\n').nth(e.location.line - 1).unwrap());
-    println!("    {0:<1$}  |{2:<3$}\x1b[1;31m^\x1b[0m", "", (e.location.line + 1).ilog10() as usize, "", e.location.column);
+    eprintln!("\x1b[1;31merror:\x1b[0m expected {}", e.expected);
+    eprintln!("    {} | {}", e.location.line, s.split('\n').nth(e.location.line - 1).unwrap());
+    eprintln!("    {0:<1$}  |{2:<3$}\x1b[1;31m^\x1b[0m", "", (e.location.line + 1).ilog10() as usize, "", e.location.column);
 }
