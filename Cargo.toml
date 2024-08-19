@@ -4,5 +4,6 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+bitflags = "2.6.0"
 funnssa = { version = "0.1.0", path = "funnssa" }
 peg = "0.8.4"

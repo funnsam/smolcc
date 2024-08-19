@@ -1,5 +1,7 @@
 #![allow(unused)]
 
+use bitflags::bitflags;
+
 pub type Span = core::ops::Range<usize>;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -18,16 +20,12 @@ pub struct IntConst {
 #[derive(Default, Debug, Clone, Copy, PartialEq, Eq)]
 pub struct IntSuffix(u8);
 
-impl IntSuffix {
-    const _U: u8 = 0b001;
-    const _L: u8 = 0b010;
-    const _LL: u8 = 0b100;
-
-    pub const U: Self = Self(Self::_U);
-    pub const UL: Self = Self(Self::_U | Self::_L);
-    pub const ULL: Self = Self(Self::_U | Self::_LL);
-    pub const L: Self = Self(Self::_L);
-    pub const LL: Self = Self(Self::_LL);
+bitflags! {
+    impl IntSuffix: u8 {
+        const U  = 1 << 0;
+        const L  = 1 << 1;
+        const LL = 1 << 2;
+    }
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -42,7 +40,7 @@ pub struct StringLit {
     pub wide: bool,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone)]
 pub enum Expr<'a> {
     Ident(&'a str),
     IntConst(IntConst),
@@ -120,33 +118,27 @@ pub enum TypeSpec<'a> {
 #[derive(Default, Debug, Clone, Copy, PartialEq, Eq)]
 pub struct TypeQual(u8);
 
-impl TypeQual {
-    const _CONST: u8 = 0b001;
-    const _RESTR: u8 = 0b010;
-    const _VOLAT: u8 = 0b100;
-
-    pub const CONST: Self = Self(Self::_CONST);
-    pub const RESTRICT: Self = Self(Self::_RESTR);
-    pub const VOLATILE: Self = Self(Self::_VOLAT);
-}
-
-impl core::ops::BitOr for TypeQual {
-    type Output = Self;
-
-    fn bitor(self, rhs: Self) -> Self::Output {
-        Self(self.0 | rhs.0)
+bitflags! {
+    impl TypeQual: u8 {
+        const CONST = 1 << 0;
+        const RESTRICT = 1 << 1;
+        const VOLATILE = 1 << 2;
     }
 }
 
-pub enum TypeSpecOrQual<'a> {
+pub(crate) enum DeclSpecToken<'a> {
     Spec(TypeSpec<'a>),
     Qual(TypeQual),
+    StorageClass(StorageClass),
+    FunctionSpec(FunctionSpec),
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub struct TypeSpecQual<'a> {
+pub struct DeclarationSpec<'a> {
     pub base_type: BaseType<'a>,
     pub qual: TypeQual,
+    pub storage: StorageClass,
+    pub fn_spec: FunctionSpec,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -222,12 +214,12 @@ impl<'a> BaseType<'a> {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone)]
 pub enum TypeName<'a> {
-    TypeSpecQual(TypeSpecQual<'a>),
+    DeclarationSpec(DeclarationSpec<'a>),
     Pointer(Box<Self>, TypeQual),
     Array(Box<Self>, Option<Box<Node<Expr<'a>>>>),
-    Function(Box<Self>),
+    Function(Box<Self>, Vec<Node<ParamDeclaration<'a>>>),
 }
 
 #[derive(Debug, Clone)]
@@ -241,5 +233,93 @@ pub enum Declarator<'a> {
     Ident(&'a str),
     Pointer(Box<Self>),
     Array(Box<Self>, TypeQual, Option<Node<Expr<'a>>>),
-    Function(Box<Self>, Vec<Node<Expr<'a>>>),
+    Function(Box<Self>, Vec<Node<ParamDeclaration<'a>>>),
+}
+
+#[derive(Debug, Clone)]
+pub enum AbsDeclarator<'a> {
+    Pointer(Option<Box<Self>>),
+    Array(Option<Box<Self>>, TypeQual, Option<Node<Expr<'a>>>),
+    Function(Option<Box<Self>>, Vec<Node<ParamDeclaration<'a>>>),
+}
+
+#[derive(Debug, Clone)]
+pub struct ParamDeclaration<'a> {
+    pub spec: DeclarationSpec<'a>,
+    pub decl: MayAbsDeclarator<'a>,
+}
+
+#[derive(Debug, Clone)]
+pub enum MayAbsDeclarator<'a> {
+    NonAbs(Declarator<'a>),
+    AbsDecl(Option<AbsDeclarator<'a>>),
+}
+
+#[derive(Default, Debug, Clone, Copy, PartialEq, Eq)]
+pub struct StorageClass(u8);
+
+bitflags! {
+    impl StorageClass: u8 {
+        const TYPEDEF = 1 << 0;
+        const EXTERN = 1 << 1;
+        const STATIC = 1 << 2;
+        const AUTO = 1 << 3;
+        const REGISTER = 1 << 4;
+    }
+}
+
+#[derive(Default, Debug, Clone, Copy, PartialEq, Eq)]
+pub struct FunctionSpec(u8);
+
+bitflags! {
+    impl FunctionSpec: u8 {
+        const INLINE = 1 << 0;
+    }
+}
+
+#[derive(Debug, Clone)]
+pub enum ExternalDecl<'a> {
+    Function(FunctionDef<'a>),
+    Declaration(Declaration<'a>),
+}
+
+#[derive(Debug, Clone)]
+pub struct FunctionDef<'a> {
+    pub decl_spec: DeclarationSpec<'a>,
+    pub declarator: Declarator<'a>,
+    pub declarations: Vec<Node<Declaration<'a>>>,
+    pub body: CompoundStmt<'a>,
+}
+
+pub type CompoundStmt<'a> = Vec<Node<BlockItem<'a>>>;
+
+#[derive(Debug, Clone)]
+pub enum BlockItem<'a> {
+    Declaration(Declaration<'a>),
+    Statement(Statement<'a>),
+}
+
+#[derive(Debug, Clone)]
+pub enum Statement<'a> {
+    Label(&'a str, Box<Node<Self>>),
+    Case(Option<Node<Expr<'a>>>, Box<Node<Self>>),
+
+    Compound(CompoundStmt<'a>),
+
+    Expression(Expr<'a>),
+
+    IfElse(Node<Expr<'a>>, Box<Node<Self>>, Option<Box<Node<Self>>>),
+    Select(Node<Expr<'a>>, Box<Node<Self>>),
+
+    While(Node<Expr<'a>>, Box<Node<Self>>),
+    DoWhile(Node<Expr<'a>>, Box<Node<Self>>),
+    For3E(Vec<Option<Node<Expr<'a>>>>, Box<Node<Self>>),
+    For2E(Node<Declaration<'a>>, Vec<Option<Node<Expr<'a>>>>, Box<Node<Self>>),
+
+    Goto(&'a str),
+    Continue,
+    Break,
+    Return(Option<Node<Expr<'a>>>),
+
+    Empty,
 }

@@ -5,35 +5,35 @@ peg::parser! {
         use super::ast::*;
 
         // temp testing thing
-        pub rule numbers() -> Vec<Node<Declaration<'input>>>
-            = _ l:(declaration() ** _) _ { l }
+        pub rule numbers() -> Vec<Node<ExternalDecl<'input>>>
+            = _ l:(external_decl() ** _) _ { l }
 
         // utilities
         rule hex_digits()
             = ['0'..='9' | 'a'..='f' | 'A'..='F']+ {};
 
         rule _
-            = quiet!{[' ' | '\n' | '\t']* ("/*" b_comment_c()* "*/" _)? ("//" [^ '\n']* _)? }
+            = quiet! {[' ' | '\n' | '\t']* ("/*" b_comment_c()* "*/" _)? ("//" [^ '\n']* _)? }
         rule b_comment_c()
             = [^ '*']
             / "*" !"/";
         rule __
-            = quiet!{&[' ' | '\n' | '\t' | '[' | ']' | '{' | '}' | '.' | '-' | '+' | '&' | '*' | '~' | '!' | '/' | '%' | '<' | '>' | '=' | '?' | ':' | ';' | ',' | '#']};
+            = quiet! {&[' ' | '\n' | '\t' | '[' | ']' | '{' | '}' | '.' | '-' | '+' | '&' | '*' | '~' | '!' | '/' | '%' | '<' | '>' | '=' | '?' | ':' | ';' | ',' | '#' | '(' | ')']};
         rule ___
-            = quiet!{ __ _ }
+            = quiet! { __ _ }
 
         rule ident() -> &'input str
-            = quiet!{ _ i:$(['_' | 'a'..='z' | 'A'..='Z']['_' | '0'..='9' | 'a'..='z' | 'A'..='Z']*) _ {?
+            = quiet! { _ i:$(['_' | 'a'..='z' | 'A'..='Z']['_' | '0'..='9' | 'a'..='z' | 'A'..='Z']*) _ {?
                 (!matches!(i, "auto" | "break" | "case" | "char" | "const" | "continue" | "default" | "do" | "double" | "else" | "enum" | "extern" | "float" | "for" | "goto" | "if" | "inline" | "int" | "long" | "register" | "restrict" | "return" | "short" | "signed" | "sizeof" | "static" | "struct" | "switch" | "typedef" | "union" | "unsigned" | "void" | "volatile" | "while" | "_Bool" | "_Complex" | "_Imaginary")).then_some(i).ok_or("identifier can't be a keyword")
             } }
             / expected!("identifier");
 
         // 6.4.4.1 integer constant
         rule int_const() -> IntConst
-            = quiet!{ _ value:dec_const() suffix:int_suffix() _ { IntConst { value, suffix, infer_unsigned: false } } }
-            / quiet!{ _ value:dec_const() _ { IntConst { value, suffix: IntSuffix::default(), infer_unsigned: false } } }
-            / quiet!{ _ value:oct_or_hex_const() suffix:int_suffix() _ { IntConst { value, suffix, infer_unsigned: true } } }
-            / quiet!{ _ value:oct_or_hex_const() _ { IntConst { value, suffix: IntSuffix::default(), infer_unsigned: true } } }
+            = quiet! { _ value:dec_const() suffix:int_suffix() _ { IntConst { value, suffix, infer_unsigned: false } } }
+            / quiet! { _ value:dec_const() _ { IntConst { value, suffix: IntSuffix::default(), infer_unsigned: false } } }
+            / quiet! { _ value:oct_or_hex_const() suffix:int_suffix() _ { IntConst { value, suffix, infer_unsigned: true } } }
+            / quiet! { _ value:oct_or_hex_const() _ { IntConst { value, suffix: IntSuffix::default(), infer_unsigned: true } } }
             / expected!("integer constant");
 
         rule dec_const() -> u64
@@ -45,18 +45,18 @@ peg::parser! {
 
         rule ll() = "ll" / "LL";
         rule int_suffix() -> IntSuffix
-            = ['u' | 'U']ll() { IntSuffix::ULL }
-            / ['u' | 'U']['l' | 'L'] { IntSuffix::UL }
+            = ['u' | 'U']ll() { IntSuffix::U | IntSuffix::LL }
+            / ['u' | 'U']['l' | 'L'] { IntSuffix::U | IntSuffix::L }
             / ['u' | 'U'] { IntSuffix::U }
-            / ll()['u' | 'U'] { IntSuffix::ULL }
+            / ll()['u' | 'U'] { IntSuffix::LL | IntSuffix::U }
             / ll() { IntSuffix::LL }
-            / ['l' | 'L']['u' | 'U'] { IntSuffix::UL }
+            / ['l' | 'L']['u' | 'U'] { IntSuffix::L | IntSuffix::U }
             / ['l' | 'L'] { IntSuffix::L };
 
         // 6.4.4.4 character constant
         rule char_const() -> CharConst
-            = quiet!{ _ "'" ch:c_char() "'" _ { CharConst { ch, wide: false } } }
-            / quiet!{ _ "L'" ch:c_char() "'" _ { CharConst { ch, wide: true } } }
+            = quiet! { _ "'" ch:c_char() "'" _ { CharConst { ch, wide: false } } }
+            / quiet! { _ "L'" ch:c_char() "'" _ { CharConst { ch, wide: true } } }
             / expected!("character constant");
 
         rule c_char() -> u32
@@ -81,8 +81,8 @@ peg::parser! {
 
         // 6.4.5 string literal
         rule string_lit() -> StringLit
-            = quiet!{ _ "\"" string:s_char()* "\"" _ { StringLit { string, wide: false } } }
-            / quiet!{ _ "L\"" string:s_char()* "\"" _ { StringLit { string, wide: true } } }
+            = quiet! { _ "\"" string:s_char()* "\"" _ { StringLit { string, wide: false } } }
+            / quiet! { _ "L\"" string:s_char()* "\"" _ { StringLit { string, wide: true } } }
             / expected!("string literal");
 
         rule s_char() -> u32
@@ -100,7 +100,7 @@ peg::parser! {
             / "(" ex: expr() ")" { ex.node };
 
         rule expr() -> Node<Expr<'input>>
-            = quiet!{ e:(assign_expr() ++ (_ "," _)) { if e.len() == 1 {
+            = quiet! { e:(assign_expr() ++ (_ "," _)) { if e.len() == 1 {
                 let mut e = e;
                 e.swap_remove(0)
             } else {
@@ -174,6 +174,10 @@ peg::parser! {
             e:prim_expr() { e }
         };
 
+        // 6.7.1
+        rule storage_class() -> StorageClass
+            = "typedef" __ { StorageClass::TYPEDEF };
+
         // 6.7.2 type specifiers
         rule type_spec() -> TypeSpec<'input>
             = "void" __ { TypeSpec::Void }
@@ -191,20 +195,18 @@ peg::parser! {
             / "enum" __ i:ident() { TypeSpec::Enum(i) }
             / i:ident() { TypeSpec::TypedefName(i) };
 
-        rule type_spec_or_qual() -> TypeSpecOrQual<'input>
-            = q:type_qual() { TypeSpecOrQual::Qual(q) }
-            / s:type_spec() { TypeSpecOrQual::Spec(s) };
-        rule spec_qual_list() -> TypeSpecQual<'input>
+        rule type_spec_or_qual() -> DeclSpecToken<'input>
+            = q:type_qual() { DeclSpecToken::Qual(q) }
+            / s:type_spec() { DeclSpecToken::Spec(s) };
+        rule spec_qual_list() -> DeclarationSpec<'input>
             = sq:(type_spec_or_qual() ++ (___ !ident())) {? // NOTE: `qual()+ TypedefName` no work
-                Ok(TypeSpecQual {
+                Ok(DeclarationSpec {
                     base_type: BaseType::from_type_specs(sq.iter().filter_map(|f|
-                        if let TypeSpecOrQual::Spec(s) = f { Some(*s) } else { None })
+                        if let DeclSpecToken::Spec(s) = f { Some(*s) } else { None })
                     )?,
-                    qual: sq.iter().fold(TypeQual::default(), |a, q| if let TypeSpecOrQual::Qual(q) = q {
-                        a | *q
-                    } else {
-                        a
-                    }),
+                    qual: sq.iter().fold(TypeQual::default(), |a, q| if let DeclSpecToken::Qual(q) = q { a | *q } else { a }),
+                    storage: StorageClass::default(),
+                    fn_spec: FunctionSpec::default(),
                 })
             };
 
@@ -216,47 +218,124 @@ peg::parser! {
         rule type_quals() -> TypeQual
             = q:(type_qual() ** ___) { q.iter().fold(TypeQual::default(), |a, q| a | *q) };
 
-        // 6.7.6 type names
+        // 6.7.4
+        rule function_spec() -> FunctionSpec
+            = "inline" __ { FunctionSpec::INLINE };
+
+        // 6.7.5
+        rule param_decl() -> Node<ParamDeclaration<'input>>
+            = l:position!() ds:declaration_spec() _ d:declarator() r:position!() { Node { node: ParamDeclaration {
+                spec: ds,
+                decl: MayAbsDeclarator::NonAbs(d),
+            }, span: l..r } }
+            / l:position!() ds:declaration_spec() _ d:abs_declarator() r:position!() { Node { node: ParamDeclaration {
+                spec: ds,
+                decl: MayAbsDeclarator::AbsDecl(d),
+            }, span: l..r } };
+
+        // 6.7.6
         rule type_name() -> Node<TypeName<'input>>
             = l:position!() node:_type_name() r:position!() { Node { node, span: l..r } };
 
-        rule _type_name_ptr() -> TypeName<'input> = precedence!{
+        rule _type_name_ptr() -> TypeName<'input> = precedence! {
             t:(@) _ "*" _ q:(type_qual() ** ___) { TypeName::Pointer(Box::new(t), q.iter().fold(TypeQual::default(), |a, q| a | *q)) }
-            type_sq:spec_qual_list() { TypeName::TypeSpecQual(type_sq) }
+            type_sq:spec_qual_list() { TypeName::DeclarationSpec(type_sq) }
         };
-        rule _type_name() -> TypeName<'input> = quiet!{ precedence!{
+        rule _type_name() -> TypeName<'input> = quiet! { precedence! {
             t:(@) _ "[" _ s:assign_expr() _ "]" { TypeName::Array(Box::new(t), Some(Box::new(s))) }
             t:(@) _ "[" _ "*" _ "]" { TypeName::Array(Box::new(t), None) }
-              // TODO: fn params
-            t:(@) _ "(" _ _ ")" { TypeName::Function(Box::new(t)) }
+            t:(@) _ "(" _ p:(param_decl() ** (_ "," _)) _ ")" { TypeName::Function(Box::new(t), p) }
             t:_type_name_ptr() { t }
             "(" _ t:_type_name_ptr() _ ")" { t }
         } } / expected!("type");
 
-        // 6.7.5
-        // rule param_decl() -> Node<ParamDecl>
-        //     = "h";
+        rule abs_declarator() -> Option<AbsDeclarator<'input>>
+            = d:_abs_declarator() { Some(d) }
+            / { None };
+
+        rule _abs_declarator() -> AbsDeclarator<'input>
+            = "*" d:abs_declarator() { AbsDeclarator::Pointer(d.map(Box::new)) }
+            / "[" _ e:assign_expr()? _ "]" _ d:abs_declarator() { AbsDeclarator::Array(d.map(Box::new), TypeQual::default(), e) }
+            / "[" _ q:type_quals() ___ e:assign_expr()? _ "]" _ d:abs_declarator() { AbsDeclarator::Array(d.map(Box::new), q, e) }
+            / "(" _ p:(param_decl() ** (_ "," _)) _ ")" _ d:abs_declarator() { AbsDeclarator::Function(d.map(Box::new), p) }
+            / "(" _ d:_abs_declarator() _ ")" { d };
 
         // 6.7
-        // TODO: decl spec
         rule declaration() -> Node<Declaration<'input>>
             = s:position!() typ:type_name() _ inits:(decl_item() ** (_ "," _)) _ ";" e:position!() {
                 Node { node: Declaration { typ, inits }, span: s..e }
             };
         rule decl_item() -> (Declarator<'input>, Option<Node<Expr<'input>>>)
-            = quiet!{ v:declarator() _ "=" _ i:assign_expr() { (v, Some(i)) } }
-            / quiet!{ v:declarator() { (v, None) } }
+            = quiet! { v:declarator() _ "=" _ i:assign_expr() { (v, Some(i)) } }
+            / quiet! { v:declarator() { (v, None) } }
             / expected!("declaration item");
+
         rule declarator() -> Declarator<'input> = precedence! {
             "*" _ d:@ { Declarator::Pointer(Box::new(d)) }
             --
             d:@ _ "[" _ e:assign_expr()? _ "]" { Declarator::Array(Box::new(d), TypeQual::default(), e) }
             d:@ _ "[" _ q:type_quals() ___ e:assign_expr()? _ "]" { Declarator::Array(Box::new(d), q, e) }
-              // TODO: fn params
-            d:@ _ "(" _ ")" { Declarator::Function(Box::new(d), vec![]) }
+            d:@ _ "(" _ p:(param_decl() ** (_ "," _)) _ ")" { Declarator::Function(Box::new(d), p) }
             --
             v:ident() { Declarator::Ident(v) }
             "(" _ d:declarator() _ ")" { d }
         };
+
+        rule decl_spec_token() -> DeclSpecToken<'input>
+            = q:type_qual() { DeclSpecToken::Qual(q) }
+            / s:type_spec() { DeclSpecToken::Spec(s) }
+            / s:storage_class() { DeclSpecToken::StorageClass(s) }
+            / f:function_spec() { DeclSpecToken::FunctionSpec(f) };
+
+        rule declaration_spec() -> DeclarationSpec<'input>
+            = sq:(decl_spec_token() ++ (___ !ident())) {? // NOTE: `qual()+ TypedefName` no work
+                Ok(DeclarationSpec {
+                    base_type: BaseType::from_type_specs(sq.iter().filter_map(|f|
+                        if let DeclSpecToken::Spec(s) = f { Some(*s) } else { None })
+                    )?,
+                    qual: sq.iter().fold(TypeQual::default(), |a, q| if let DeclSpecToken::Qual(q) = q { a | *q } else { a }),
+                    storage: sq.iter().fold(StorageClass::default(), |a, q| if let DeclSpecToken::StorageClass(q) = q { a | *q } else { a }),
+                    fn_spec: sq.iter().fold(FunctionSpec::default(), |a, q| if let DeclSpecToken::FunctionSpec(q) = q { a | *q } else { a }),
+                })
+            };
+
+        // 6.8 statements
+        rule statement() -> Node<Statement<'input>>
+            = l:position!() i:ident() _ ":" _ s:statement() r:position!() { Node { node: Statement::Label(i, Box::new(s)), span: l..r } }
+            / l:position!() "case" ___ e:expr() _ ":" _ s:statement() r:position!() { Node { node: Statement::Case(Some(e), Box::new(s)), span: l..r } }
+            / l:position!() "default" ___ ":" _ s:statement() r:position!() { Node { node: Statement::Case(None, Box::new(s)), span: l..r } }
+
+            / l:position!() comp:compound_stmt() r:position!() { Node { node: Statement::Compound(comp), span: l..r } }
+
+            / expr:expr() ";" r:position!() { Node { span: expr.span.start..r, node: Statement::Expression(expr.node) } }
+            / l:position!() ";" r:position!() { Node { node: Statement::Empty, span: l..r } }
+
+            / l:position!() "if" ___ "(" _ e:expr() _ ")" _ a:statement() _ "else" ___ b:statement() r:position!() { Node { node: Statement::IfElse(e, Box::new(a), Some(Box::new(b))), span: l..r } }
+            / l:position!() "if" ___ "(" _ e:expr() _ ")" _ a:statement() r:position!() { Node { node: Statement::IfElse(e, Box::new(a), None), span: l..r } }
+            / l:position!() "select" ___ "(" _ e:expr() _ ")" _ a:statement() r:position!() { Node { node: Statement::Select(e, Box::new(a)), span: l..r } }
+
+            / l:position!() "while" ___ "(" _ e:expr() _ ")" _ b:statement() r:position!() { Node { node: Statement::While(e, Box::new(b)), span: l..r } }
+            / l:position!() "do" ___ b:statement() _ "while" ___ "(" _ e:expr() _ ")" r:position!() { Node { node: Statement::DoWhile(e, Box::new(b)), span: l..r } }
+            / l:position!() "for" ___ "(" _ e:((expr()?) **<3, 3> (_ ";" _)) _ ")" _ b:statement() r:position!() { Node { node: Statement::For3E(e, Box::new(b)), span: l..r } }
+            / l:position!() "for" ___ "(" _ d:declaration() e:((expr()?) **<2, 2> (_ ";" _)) _ ")" _ b:statement() r:position!() { Node { node: Statement::For2E(d, e, Box::new(b)), span: l..r } }
+
+            / l:position!() "goto" ___ i:ident() _ ";" r:position!() { Node { node: Statement::Goto(i), span: l..r } }
+            / l:position!() "continue" _ ";" r:position!() { Node { node: Statement::Continue, span: l..r } }
+            / l:position!() "break" _ ";" r:position!() { Node { node: Statement::Break, span: l..r } }
+            / l:position!() "return" ___ i:expr()? _ ";" r:position!() { Node { node: Statement::Return(i), span: l..r } };
+
+        rule compound_stmt() -> CompoundStmt<'input>
+            = "{" _ i:(block_item() ** _) _ "}" { i };
+
+        rule block_item() -> Node<BlockItem<'input>>
+            = d:declaration() { Node { span: d.span, node: BlockItem::Declaration(d.node) } }
+            / s:statement() { Node { span: s.span, node: BlockItem::Statement(s.node) } };
+
+        // 6.9 ext defs
+        rule external_decl() -> Node<ExternalDecl<'input>>
+            = l:position!() decl_spec:declaration_spec() _ declarator:declarator() _ declarations:(declaration() ** _) _ body:compound_stmt() r:position!() {
+                Node { node: ExternalDecl::Function(FunctionDef { decl_spec, declarator, declarations, body }), span: l..r }
+            }
+            / d:declaration() { Node { span: d.span, node: ExternalDecl::Declaration(d.node) } };
     }
 }

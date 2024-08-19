@@ -1,1 +1,3 @@
-int h[const restrict1];
+int main() {
+    for (;;);
+}
