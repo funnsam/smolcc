@@ -1,0 +1,8969 @@
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: UInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 4006..4027,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "__id_t",
+       ),
+       span: 4027..4033,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 4006..4034,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SLong,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 4035..4052,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "__time_t",
+       ),
+       span: 4052..4060,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 4035..4061,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: UInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 4062..4083,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "__useconds_t",
+       ),
+       span: 4083..4095,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 4062..4096,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SLong,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 4097..4114,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "__suseconds_t",
+       ),
+       span: 4114..4127,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 4097..4128,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SLong,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 4129..4146,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "__suseconds64_t",
+       ),
+       span: 4146..4161,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 4129..4162,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 4164..4176,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "__daddr_t",
+       ),
+       span: 4176..4185,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 4164..4186,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 4187..4199,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "__key_t",
+       ),
+       span: 4199..4206,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 4187..4207,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 4210..4222,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "__clockid_t",
+       ),
+       span: 4222..4233,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 4210..4234,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: Void,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 4237..4249,
+    },
+    inits: [
+     (
+      Node {
+       node: Pointer(
+        Node {
+         node: Ident(
+          "__timer_t",
+         ),
+         span: 4252..4261,
+        },
+        TypeQual(
+         0,
+        ),
+       ),
+       span: 4250..4261,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 4237..4262,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 4265..4277,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "__blksize_t",
+       ),
+       span: 4277..4288,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 4265..4289,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SLong,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 4294..4311,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "__blkcnt_t",
+       ),
+       span: 4311..4321,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 4294..4322,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SLong,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 4323..4340,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "__blkcnt64_t",
+       ),
+       span: 4340..4352,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 4323..4353,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: ULong,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 4356..4382,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "__fsblkcnt_t",
+       ),
+       span: 4382..4394,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 4356..4395,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: ULong,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 4396..4422,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "__fsblkcnt64_t",
+       ),
+       span: 4422..4436,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 4396..4437,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: ULong,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 4440..4466,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "__fsfilcnt_t",
+       ),
+       span: 4466..4478,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 4440..4479,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: ULong,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 4480..4506,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "__fsfilcnt64_t",
+       ),
+       span: 4506..4520,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 4480..4521,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SLong,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 4524..4541,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "__fsword_t",
+       ),
+       span: 4541..4551,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 4524..4552,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SLong,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 4554..4571,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "__ssize_t",
+       ),
+       span: 4571..4580,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 4554..4581,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SLong,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 4584..4601,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "__syscall_slong_t",
+       ),
+       span: 4601..4618,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 4584..4619,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: ULong,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 4621..4647,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "__syscall_ulong_t",
+       ),
+       span: 4647..4664,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 4621..4665,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: TypedefName(
+       "__off64_t",
+      ),
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 4669..4687,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "__loff_t",
+       ),
+       span: 4687..4695,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 4669..4696,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SChar,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 4697..4709,
+    },
+    inits: [
+     (
+      Node {
+       node: Pointer(
+        Node {
+         node: Ident(
+          "__caddr_t",
+         ),
+         span: 4711..4720,
+        },
+        TypeQual(
+         0,
+        ),
+       ),
+       span: 4710..4720,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 4697..4721,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SLong,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 4724..4741,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "__intptr_t",
+       ),
+       span: 4741..4751,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 4724..4752,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: UInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 4755..4776,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "__socklen_t",
+       ),
+       span: 4776..4787,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 4755..4788,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 4793..4805,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "__sig_atomic_t",
+       ),
+       span: 4805..4819,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 4793..4820,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: Struct(
+       None,
+       Some(
+        [
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: SInt,
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 5078..5082,
+          },
+          item: Some(
+           Node {
+            node: Ident(
+             "__count",
+            ),
+            span: 5082..5089,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: Union(
+             None,
+             Some(
+              [
+               StructItem {
+                typ: Node {
+                 node: DeclarationSpec {
+                  base_type: UInt,
+                  qual: TypeQual(
+                   0,
+                  ),
+                  storage: StorageClass(
+                   0,
+                  ),
+                  fn_spec: FunctionSpec(
+                   0,
+                  ),
+                 },
+                 span: 5107..5120,
+                },
+                item: Some(
+                 Node {
+                  node: Ident(
+                   "__wch",
+                  ),
+                  span: 5120..5125,
+                 },
+                ),
+                bits: None,
+               },
+               StructItem {
+                typ: Node {
+                 node: DeclarationSpec {
+                  base_type: SChar,
+                  qual: TypeQual(
+                   0,
+                  ),
+                  storage: StorageClass(
+                   0,
+                  ),
+                  fn_spec: FunctionSpec(
+                   0,
+                  ),
+                 },
+                 span: 5131..5136,
+                },
+                item: Some(
+                 Node {
+                  node: Array(
+                   Node {
+                    node: Ident(
+                     "__wchb",
+                    ),
+                    span: 5136..5142,
+                   },
+                   TypeQual(
+                    0,
+                   ),
+                   Some(
+                    Node {
+                     node: IntConst(
+                      IntConst {
+                       value: 4,
+                       suffix: IntSuffix(
+                        0,
+                       ),
+                       infer_unsigned: false,
+                      },
+                     ),
+                     span: 5143..5144,
+                    },
+                   ),
+                  ),
+                  span: 5136..5145,
+                 },
+                ),
+                bits: None,
+               },
+              ],
+             ),
+            ),
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 5093..5151,
+          },
+          item: Some(
+           Node {
+            node: Ident(
+             "__value",
+            ),
+            span: 5151..5158,
+           },
+          ),
+          bits: None,
+         },
+        ],
+       ),
+      ),
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 5059..5162,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "__mbstate_t",
+       ),
+       span: 5162..5173,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 5059..5174,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: Struct(
+       Some(
+        "_G_fpos_t",
+       ),
+       Some(
+        [
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: TypedefName(
+             "__off_t",
+            ),
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 5273..5281,
+          },
+          item: Some(
+           Node {
+            node: Ident(
+             "__pos",
+            ),
+            span: 5281..5286,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: TypedefName(
+             "__mbstate_t",
+            ),
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 5290..5302,
+          },
+          item: Some(
+           Node {
+            node: Ident(
+             "__state",
+            ),
+            span: 5302..5309,
+           },
+          ),
+          bits: None,
+         },
+        ],
+       ),
+      ),
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 5244..5313,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "__fpos_t",
+       ),
+       span: 5313..5321,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 5244..5322,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: Struct(
+       Some(
+        "_G_fpos64_t",
+       ),
+       Some(
+        [
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: TypedefName(
+             "__off64_t",
+            ),
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 5521..5531,
+          },
+          item: Some(
+           Node {
+            node: Ident(
+             "__pos",
+            ),
+            span: 5531..5536,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: TypedefName(
+             "__mbstate_t",
+            ),
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 5540..5552,
+          },
+          item: Some(
+           Node {
+            node: Ident(
+             "__state",
+            ),
+            span: 5552..5559,
+           },
+          ),
+          bits: None,
+         },
+        ],
+       ),
+      ),
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 5490..5563,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "__fpos64_t",
+       ),
+       span: 5563..5573,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 5490..5574,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: Struct(
+       Some(
+        "_IO_FILE",
+       ),
+       None,
+      ),
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       0,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 5675..5690,
+    },
+    inits: [],
+   },
+  ),
+  span: 5675..5691,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: Struct(
+       Some(
+        "_IO_FILE",
+       ),
+       None,
+      ),
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 5692..5716,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "__FILE",
+       ),
+       span: 5716..5722,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 5692..5723,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: Struct(
+       Some(
+        "_IO_FILE",
+       ),
+       None,
+      ),
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       0,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 5822..5837,
+    },
+    inits: [],
+   },
+  ),
+  span: 5822..5838,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: Struct(
+       Some(
+        "_IO_FILE",
+       ),
+       None,
+      ),
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 5841..5865,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "FILE",
+       ),
+       span: 5865..5869,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 5841..5870,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: Struct(
+       Some(
+        "_IO_FILE",
+       ),
+       None,
+      ),
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       0,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 6040..6055,
+    },
+    inits: [],
+   },
+  ),
+  span: 6040..6056,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: Struct(
+       Some(
+        "_IO_marker",
+       ),
+       None,
+      ),
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       0,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 6057..6074,
+    },
+    inits: [],
+   },
+  ),
+  span: 6057..6075,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: Struct(
+       Some(
+        "_IO_codecvt",
+       ),
+       None,
+      ),
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       0,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 6076..6094,
+    },
+    inits: [],
+   },
+  ),
+  span: 6076..6095,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: Struct(
+       Some(
+        "_IO_wide_data",
+       ),
+       None,
+      ),
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       0,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 6096..6116,
+    },
+    inits: [],
+   },
+  ),
+  span: 6096..6117,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: Void,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 6122..6135,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "_IO_lock_t",
+       ),
+       span: 6135..6145,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 6122..6146,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: Struct(
+       Some(
+        "_IO_FILE",
+       ),
+       Some(
+        [
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: SInt,
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 6172..6176,
+          },
+          item: Some(
+           Node {
+            node: Ident(
+             "_flags",
+            ),
+            span: 6176..6182,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: SChar,
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 6188..6192,
+          },
+          item: Some(
+           Node {
+            node: Pointer(
+             Node {
+              node: Ident(
+               "_IO_read_ptr",
+              ),
+              span: 6194..6206,
+             },
+             TypeQual(
+              0,
+             ),
+            ),
+            span: 6193..6206,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: SChar,
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 6210..6214,
+          },
+          item: Some(
+           Node {
+            node: Pointer(
+             Node {
+              node: Ident(
+               "_IO_read_end",
+              ),
+              span: 6216..6228,
+             },
+             TypeQual(
+              0,
+             ),
+            ),
+            span: 6215..6228,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: SChar,
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 6232..6236,
+          },
+          item: Some(
+           Node {
+            node: Pointer(
+             Node {
+              node: Ident(
+               "_IO_read_base",
+              ),
+              span: 6238..6251,
+             },
+             TypeQual(
+              0,
+             ),
+            ),
+            span: 6237..6251,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: SChar,
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 6255..6259,
+          },
+          item: Some(
+           Node {
+            node: Pointer(
+             Node {
+              node: Ident(
+               "_IO_write_base",
+              ),
+              span: 6261..6275,
+             },
+             TypeQual(
+              0,
+             ),
+            ),
+            span: 6260..6275,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: SChar,
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 6279..6283,
+          },
+          item: Some(
+           Node {
+            node: Pointer(
+             Node {
+              node: Ident(
+               "_IO_write_ptr",
+              ),
+              span: 6285..6298,
+             },
+             TypeQual(
+              0,
+             ),
+            ),
+            span: 6284..6298,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: SChar,
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 6302..6306,
+          },
+          item: Some(
+           Node {
+            node: Pointer(
+             Node {
+              node: Ident(
+               "_IO_write_end",
+              ),
+              span: 6308..6321,
+             },
+             TypeQual(
+              0,
+             ),
+            ),
+            span: 6307..6321,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: SChar,
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 6325..6329,
+          },
+          item: Some(
+           Node {
+            node: Pointer(
+             Node {
+              node: Ident(
+               "_IO_buf_base",
+              ),
+              span: 6331..6343,
+             },
+             TypeQual(
+              0,
+             ),
+            ),
+            span: 6330..6343,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: SChar,
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 6347..6351,
+          },
+          item: Some(
+           Node {
+            node: Pointer(
+             Node {
+              node: Ident(
+               "_IO_buf_end",
+              ),
+              span: 6353..6364,
+             },
+             TypeQual(
+              0,
+             ),
+            ),
+            span: 6352..6364,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: SChar,
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 6370..6374,
+          },
+          item: Some(
+           Node {
+            node: Pointer(
+             Node {
+              node: Ident(
+               "_IO_save_base",
+              ),
+              span: 6376..6389,
+             },
+             TypeQual(
+              0,
+             ),
+            ),
+            span: 6375..6389,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: SChar,
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 6393..6397,
+          },
+          item: Some(
+           Node {
+            node: Pointer(
+             Node {
+              node: Ident(
+               "_IO_backup_base",
+              ),
+              span: 6399..6414,
+             },
+             TypeQual(
+              0,
+             ),
+            ),
+            span: 6398..6414,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: SChar,
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 6418..6422,
+          },
+          item: Some(
+           Node {
+            node: Pointer(
+             Node {
+              node: Ident(
+               "_IO_save_end",
+              ),
+              span: 6424..6436,
+             },
+             TypeQual(
+              0,
+             ),
+            ),
+            span: 6423..6436,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: Struct(
+             Some(
+              "_IO_marker",
+             ),
+             None,
+            ),
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 6441..6459,
+          },
+          item: Some(
+           Node {
+            node: Pointer(
+             Node {
+              node: Ident(
+               "_markers",
+              ),
+              span: 6460..6468,
+             },
+             TypeQual(
+              0,
+             ),
+            ),
+            span: 6459..6468,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: Struct(
+             Some(
+              "_IO_FILE",
+             ),
+             None,
+            ),
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 6473..6489,
+          },
+          item: Some(
+           Node {
+            node: Pointer(
+             Node {
+              node: Ident(
+               "_chain",
+              ),
+              span: 6490..6496,
+             },
+             TypeQual(
+              0,
+             ),
+            ),
+            span: 6489..6496,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: SInt,
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 6501..6505,
+          },
+          item: Some(
+           Node {
+            node: Ident(
+             "_fileno",
+            ),
+            span: 6505..6512,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: SInt,
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 6516..6520,
+          },
+          item: Some(
+           Node {
+            node: Ident(
+             "_flags2",
+            ),
+            span: 6520..6527,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: TypedefName(
+             "__off_t",
+            ),
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 6531..6539,
+          },
+          item: Some(
+           Node {
+            node: Ident(
+             "_old_offset",
+            ),
+            span: 6539..6550,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: UShort,
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 6556..6571,
+          },
+          item: Some(
+           Node {
+            node: Ident(
+             "_cur_column",
+            ),
+            span: 6571..6582,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: SChar,
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 6586..6598,
+          },
+          item: Some(
+           Node {
+            node: Ident(
+             "_vtable_offset",
+            ),
+            span: 6598..6612,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: SChar,
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 6616..6621,
+          },
+          item: Some(
+           Node {
+            node: Array(
+             Node {
+              node: Ident(
+               "_shortbuf",
+              ),
+              span: 6621..6630,
+             },
+             TypeQual(
+              0,
+             ),
+             Some(
+              Node {
+               node: IntConst(
+                IntConst {
+                 value: 1,
+                 suffix: IntSuffix(
+                  0,
+                 ),
+                 infer_unsigned: false,
+                },
+               ),
+               span: 6631..6632,
+              },
+             ),
+            ),
+            span: 6621..6633,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: TypedefName(
+             "_IO_lock_t",
+            ),
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 6638..6649,
+          },
+          item: Some(
+           Node {
+            node: Pointer(
+             Node {
+              node: Ident(
+               "_lock",
+              ),
+              span: 6650..6655,
+             },
+             TypeQual(
+              0,
+             ),
+            ),
+            span: 6649..6655,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: TypedefName(
+             "__off64_t",
+            ),
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 6666..6676,
+          },
+          item: Some(
+           Node {
+            node: Ident(
+             "_offset",
+            ),
+            span: 6676..6683,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: Struct(
+             Some(
+              "_IO_codecvt",
+             ),
+             None,
+            ),
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 6688..6707,
+          },
+          item: Some(
+           Node {
+            node: Pointer(
+             Node {
+              node: Ident(
+               "_codecvt",
+              ),
+              span: 6708..6716,
+             },
+             TypeQual(
+              0,
+             ),
+            ),
+            span: 6707..6716,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: Struct(
+             Some(
+              "_IO_wide_data",
+             ),
+             None,
+            ),
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 6720..6741,
+          },
+          item: Some(
+           Node {
+            node: Pointer(
+             Node {
+              node: Ident(
+               "_wide_data",
+              ),
+              span: 6742..6752,
+             },
+             TypeQual(
+              0,
+             ),
+            ),
+            span: 6741..6752,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: Struct(
+             Some(
+              "_IO_FILE",
+             ),
+             None,
+            ),
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 6756..6772,
+          },
+          item: Some(
+           Node {
+            node: Pointer(
+             Node {
+              node: Ident(
+               "_freeres_list",
+              ),
+              span: 6773..6786,
+             },
+             TypeQual(
+              0,
+             ),
+            ),
+            span: 6772..6786,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: Void,
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 6790..6794,
+          },
+          item: Some(
+           Node {
+            node: Pointer(
+             Node {
+              node: Ident(
+               "_freeres_buf",
+              ),
+              span: 6796..6808,
+             },
+             TypeQual(
+              0,
+             ),
+            ),
+            span: 6795..6808,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: TypedefName(
+             "size_t",
+            ),
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 6812..6819,
+          },
+          item: Some(
+           Node {
+            node: Ident(
+             "__pad5",
+            ),
+            span: 6819..6825,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: SInt,
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 6829..6833,
+          },
+          item: Some(
+           Node {
+            node: Ident(
+             "_mode",
+            ),
+            span: 6833..6838,
+           },
+          ),
+          bits: None,
+         },
+         StructItem {
+          typ: Node {
+           node: DeclarationSpec {
+            base_type: SChar,
+            qual: TypeQual(
+             0,
+            ),
+            storage: StorageClass(
+             0,
+            ),
+            fn_spec: FunctionSpec(
+             0,
+            ),
+           },
+           span: 6843..6848,
+          },
+          item: Some(
+           Node {
+            node: Array(
+             Node {
+              node: Ident(
+               "_unused2",
+              ),
+              span: 6848..6856,
+             },
+             TypeQual(
+              0,
+             ),
+             Some(
+              Node {
+               node: Mul(
+                Node {
+                 node: Mul(
+                  Node {
+                   node: IntConst(
+                    IntConst {
+                     value: 15,
+                     suffix: IntSuffix(
+                      0,
+                     ),
+                     infer_unsigned: false,
+                    },
+                   ),
+                   span: 6857..6860,
+                  },
+                  Node {
+                   node: SizeOfE(
+                    Node {
+                     node: Cast(
+                      Node {
+                       node: TypeName {
+                        spec: DeclarationSpec {
+                         base_type: SInt,
+                         qual: TypeQual(
+                          0,
+                         ),
+                         storage: StorageClass(
+                          0,
+                         ),
+                         fn_spec: FunctionSpec(
+                          0,
+                         ),
+                        },
+                        decl: None,
+                       },
+                       span: 6870..6873,
+                      },
+                      Node {
+                       node: Neg(
+                        Node {
+                         node: IntConst(
+                          IntConst {
+                           value: 4,
+                           suffix: IntSuffix(
+                            0,
+                           ),
+                           infer_unsigned: false,
+                          },
+                         ),
+                         span: 6877..6879,
+                        },
+                       ),
+                       span: 6875..6879,
+                      },
+                     ),
+                     span: 6869..6879,
+                    },
+                   ),
+                   span: 6862..6879,
+                  },
+                 ),
+                 span: 6857..6879,
+                },
+                Node {
+                 node: SizeOfE(
+                  Node {
+                   node: Cast(
+                    Node {
+                     node: TypeName {
+                      spec: DeclarationSpec {
+                       base_type: Void,
+                       qual: TypeQual(
+                        0,
+                       ),
+                       storage: StorageClass(
+                        0,
+                       ),
+                       fn_spec: FunctionSpec(
+                        0,
+                       ),
+                      },
+                      decl: Some(
+                       Pointer(
+                        None,
+                       ),
+                      ),
+                     },
+                     span: 6889..6895,
+                    },
+                    Node {
+                     node: Neg(
+                      Node {
+                       node: SizeOfE(
+                        Node {
+                         node: Ident(
+                          "size_t",
+                         ),
+                         span: 6906..6914,
+                        },
+                       ),
+                       span: 6899..6914,
+                      },
+                     ),
+                     span: 6897..6914,
+                    },
+                   ),
+                   span: 6888..6914,
+                  },
+                 ),
+                 span: 6881..6914,
+                },
+               ),
+               span: 6857..6914,
+              },
+             ),
+            ),
+            span: 6848..6915,
+           },
+          ),
+          bits: None,
+         },
+        ],
+       ),
+      ),
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       0,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 6152..6918,
+    },
+    inits: [],
+   },
+  ),
+  span: 6152..6919,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: TypedefName(
+       "__fpos_t",
+      ),
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 6986..7003,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "fpos_t",
+       ),
+       span: 7003..7009,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 6986..7010,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: TypedefName(
+       "FILE",
+      ),
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 7172..7184,
+    },
+    inits: [
+     (
+      Node {
+       node: Pointer(
+        Node {
+         node: Ident(
+          "stdin",
+         ),
+         span: 7185..7190,
+        },
+        TypeQual(
+         0,
+        ),
+       ),
+       span: 7184..7190,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 7172..7191,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: TypedefName(
+       "FILE",
+      ),
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 7192..7204,
+    },
+    inits: [
+     (
+      Node {
+       node: Pointer(
+        Node {
+         node: Ident(
+          "stdout",
+         ),
+         span: 7205..7211,
+        },
+        TypeQual(
+         0,
+        ),
+       ),
+       span: 7204..7211,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 7192..7212,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: TypedefName(
+       "FILE",
+      ),
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 7213..7225,
+    },
+    inits: [
+     (
+      Node {
+       node: Pointer(
+        Node {
+         node: Ident(
+          "stderr",
+         ),
+         span: 7226..7232,
+        },
+        TypeQual(
+         0,
+        ),
+       ),
+       span: 7225..7232,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 7213..7233,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 7240..7251,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "remove",
+         ),
+         span: 7251..7258,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 7259..7269,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__filename",
+                ),
+                span: 7271..7281,
+               },
+               TypeQual(
+                0,
+               ),
+              ),
+              span: 7270..7281,
+             },
+            ),
+           },
+           span: 7259..7281,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 7251..7282,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 7240..7284,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 7286..7297,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "rename",
+         ),
+         span: 7297..7304,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 7305..7315,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__old",
+                ),
+                span: 7317..7322,
+               },
+               TypeQual(
+                0,
+               ),
+              ),
+              span: 7316..7322,
+             },
+            ),
+           },
+           span: 7305..7322,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 7324..7334,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__new",
+                ),
+                span: 7336..7341,
+               },
+               TypeQual(
+                0,
+               ),
+              ),
+              span: 7335..7341,
+             },
+            ),
+           },
+           span: 7324..7341,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 7297..7342,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 7286..7344,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 7378..7389,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "fclose",
+         ),
+         span: 7389..7396,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "FILE",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 7397..7402,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__stream",
+                ),
+                span: 7403..7411,
+               },
+               TypeQual(
+                0,
+               ),
+              ),
+              span: 7402..7411,
+             },
+            ),
+           },
+           span: 7397..7411,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 7389..7412,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 7378..7413,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: TypedefName(
+       "FILE",
+      ),
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 7447..7459,
+    },
+    inits: [
+     (
+      Node {
+       node: Pointer(
+        Node {
+         node: Function(
+          Node {
+           node: Ident(
+            "tmpfile",
+           ),
+           span: 7460..7468,
+          },
+          ParamTypeList {
+           param: [
+            Node {
+             node: ParamDeclaration {
+              spec: Node {
+               node: DeclarationSpec {
+                base_type: Void,
+                qual: TypeQual(
+                 0,
+                ),
+                storage: StorageClass(
+                 0,
+                ),
+                fn_spec: FunctionSpec(
+                 0,
+                ),
+               },
+               span: 7469..7473,
+              },
+              decl: AbsDecl(
+               None,
+              ),
+             },
+             span: 7469..7473,
+            },
+           ],
+           more: false,
+          },
+         ),
+         span: 7460..7474,
+        },
+        TypeQual(
+         0,
+        ),
+       ),
+       span: 7459..7474,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 7447..7478,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SChar,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 7512..7523,
+    },
+    inits: [
+     (
+      Node {
+       node: Pointer(
+        Node {
+         node: Function(
+          Node {
+           node: Ident(
+            "tmpnam",
+           ),
+           span: 7525..7532,
+          },
+          ParamTypeList {
+           param: [
+            Node {
+             node: ParamDeclaration {
+              spec: Node {
+               node: DeclarationSpec {
+                base_type: SChar,
+                qual: TypeQual(
+                 0,
+                ),
+                storage: StorageClass(
+                 0,
+                ),
+                fn_spec: FunctionSpec(
+                 0,
+                ),
+               },
+               span: 7533..7537,
+              },
+              decl: AbsDecl(
+               Some(
+                Array(
+                 None,
+                 TypeQual(
+                  0,
+                 ),
+                 Some(
+                  Node {
+                   node: IntConst(
+                    IntConst {
+                     value: 20,
+                     suffix: IntSuffix(
+                      0,
+                     ),
+                     infer_unsigned: false,
+                    },
+                   ),
+                   span: 7538..7540,
+                  },
+                 ),
+                ),
+               ),
+              ),
+             },
+             span: 7533..7541,
+            },
+           ],
+           more: false,
+          },
+         ),
+         span: 7525..7542,
+        },
+        TypeQual(
+         0,
+        ),
+       ),
+       span: 7524..7542,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 7512..7544,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 7578..7589,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "fflush",
+         ),
+         span: 7589..7596,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "FILE",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 7597..7602,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__stream",
+                ),
+                span: 7603..7611,
+               },
+               TypeQual(
+                0,
+               ),
+              ),
+              span: 7602..7611,
+             },
+            ),
+           },
+           span: 7597..7611,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 7589..7612,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 7578..7613,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: TypedefName(
+       "FILE",
+      ),
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 7647..7659,
+    },
+    inits: [
+     (
+      Node {
+       node: Pointer(
+        Node {
+         node: Function(
+          Node {
+           node: Ident(
+            "fopen",
+           ),
+           span: 7660..7666,
+          },
+          ParamTypeList {
+           param: [
+            Node {
+             node: ParamDeclaration {
+              spec: Node {
+               node: DeclarationSpec {
+                base_type: SChar,
+                qual: TypeQual(
+                 1,
+                ),
+                storage: StorageClass(
+                 0,
+                ),
+                fn_spec: FunctionSpec(
+                 0,
+                ),
+               },
+               span: 7667..7677,
+              },
+              decl: NonAbs(
+               Node {
+                node: Pointer(
+                 Node {
+                  node: Ident(
+                   "__filename",
+                  ),
+                  span: 7688..7698,
+                 },
+                 TypeQual(
+                  2,
+                 ),
+                ),
+                span: 7678..7698,
+               },
+              ),
+             },
+             span: 7667..7698,
+            },
+            Node {
+             node: ParamDeclaration {
+              spec: Node {
+               node: DeclarationSpec {
+                base_type: SChar,
+                qual: TypeQual(
+                 1,
+                ),
+                storage: StorageClass(
+                 0,
+                ),
+                fn_spec: FunctionSpec(
+                 0,
+                ),
+               },
+               span: 7706..7716,
+              },
+              decl: NonAbs(
+               Node {
+                node: Pointer(
+                 Node {
+                  node: Ident(
+                   "__modes",
+                  ),
+                  span: 7727..7734,
+                 },
+                 TypeQual(
+                  2,
+                 ),
+                ),
+                span: 7717..7734,
+               },
+              ),
+             },
+             span: 7706..7734,
+            },
+           ],
+           more: false,
+          },
+         ),
+         span: 7660..7735,
+        },
+        TypeQual(
+         0,
+        ),
+       ),
+       span: 7659..7735,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 7647..7739,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: TypedefName(
+       "FILE",
+      ),
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 7744..7756,
+    },
+    inits: [
+     (
+      Node {
+       node: Pointer(
+        Node {
+         node: Function(
+          Node {
+           node: Ident(
+            "freopen",
+           ),
+           span: 7757..7765,
+          },
+          ParamTypeList {
+           param: [
+            Node {
+             node: ParamDeclaration {
+              spec: Node {
+               node: DeclarationSpec {
+                base_type: SChar,
+                qual: TypeQual(
+                 1,
+                ),
+                storage: StorageClass(
+                 0,
+                ),
+                fn_spec: FunctionSpec(
+                 0,
+                ),
+               },
+               span: 7766..7776,
+              },
+              decl: NonAbs(
+               Node {
+                node: Pointer(
+                 Node {
+                  node: Ident(
+                   "__filename",
+                  ),
+                  span: 7787..7797,
+                 },
+                 TypeQual(
+                  2,
+                 ),
+                ),
+                span: 7777..7797,
+               },
+              ),
+             },
+             span: 7766..7797,
+            },
+            Node {
+             node: ParamDeclaration {
+              spec: Node {
+               node: DeclarationSpec {
+                base_type: SChar,
+                qual: TypeQual(
+                 1,
+                ),
+                storage: StorageClass(
+                 0,
+                ),
+                fn_spec: FunctionSpec(
+                 0,
+                ),
+               },
+               span: 7807..7817,
+              },
+              decl: NonAbs(
+               Node {
+                node: Pointer(
+                 Node {
+                  node: Ident(
+                   "__modes",
+                  ),
+                  span: 7828..7835,
+                 },
+                 TypeQual(
+                  2,
+                 ),
+                ),
+                span: 7818..7835,
+               },
+              ),
+             },
+             span: 7807..7835,
+            },
+            Node {
+             node: ParamDeclaration {
+              spec: Node {
+               node: DeclarationSpec {
+                base_type: TypedefName(
+                 "FILE",
+                ),
+                qual: TypeQual(
+                 0,
+                ),
+                storage: StorageClass(
+                 0,
+                ),
+                fn_spec: FunctionSpec(
+                 0,
+                ),
+               },
+               span: 7845..7850,
+              },
+              decl: NonAbs(
+               Node {
+                node: Pointer(
+                 Node {
+                  node: Ident(
+                   "__stream",
+                  ),
+                  span: 7860..7868,
+                 },
+                 TypeQual(
+                  2,
+                 ),
+                ),
+                span: 7850..7868,
+               },
+              ),
+             },
+             span: 7845..7868,
+            },
+           ],
+           more: false,
+          },
+         ),
+         span: 7757..7869,
+        },
+        TypeQual(
+         0,
+        ),
+       ),
+       span: 7756..7869,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 7744..7871,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: Void,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 7905..7917,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "setbuf",
+         ),
+         span: 7917..7924,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "FILE",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 7925..7930,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__stream",
+                ),
+                span: 7940..7948,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 7930..7948,
+             },
+            ),
+           },
+           span: 7925..7948,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 7950..7954,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__buf",
+                ),
+                span: 7965..7970,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 7955..7970,
+             },
+            ),
+           },
+           span: 7950..7970,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 7917..7971,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 7905..7973,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 7977..7988,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "setvbuf",
+         ),
+         span: 7988..7996,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "FILE",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 7997..8002,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__stream",
+                ),
+                span: 8012..8020,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 8002..8020,
+             },
+            ),
+           },
+           span: 7997..8020,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 8022..8026,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__buf",
+                ),
+                span: 8037..8042,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 8027..8042,
+             },
+            ),
+           },
+           span: 8022..8042,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SInt,
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 8050..8054,
+            },
+            decl: NonAbs(
+             Node {
+              node: Ident(
+               "__modes",
+              ),
+              span: 8054..8061,
+             },
+            ),
+           },
+           span: 8050..8061,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "size_t",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 8063..8070,
+            },
+            decl: NonAbs(
+             Node {
+              node: Ident(
+               "__n",
+              ),
+              span: 8070..8073,
+             },
+            ),
+           },
+           span: 8063..8073,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 7988..8074,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 7977..8076,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 8110..8121,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "fprintf",
+         ),
+         span: 8121..8129,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "FILE",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 8130..8135,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__stream",
+                ),
+                span: 8145..8153,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 8135..8153,
+             },
+            ),
+           },
+           span: 8130..8153,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 8161..8171,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__format",
+                ),
+                span: 8182..8190,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 8172..8190,
+             },
+            ),
+           },
+           span: 8161..8190,
+          },
+         ],
+         more: true,
+        },
+       ),
+       span: 8121..8196,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 8110..8197,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 8202..8213,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "printf",
+         ),
+         span: 8213..8220,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 8221..8231,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__format",
+                ),
+                span: 8242..8250,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 8232..8250,
+             },
+            ),
+           },
+           span: 8221..8250,
+          },
+         ],
+         more: true,
+        },
+       ),
+       span: 8213..8256,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 8202..8257,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 8259..8270,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "sprintf",
+         ),
+         span: 8270..8278,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 8279..8283,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__s",
+                ),
+                span: 8294..8297,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 8284..8297,
+             },
+            ),
+           },
+           span: 8279..8297,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 8305..8315,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__format",
+                ),
+                span: 8326..8334,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 8316..8334,
+             },
+            ),
+           },
+           span: 8305..8334,
+          },
+         ],
+         more: true,
+        },
+       ),
+       span: 8270..8340,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 8259..8342,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 8348..8359,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "vfprintf",
+         ),
+         span: 8359..8368,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "FILE",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 8369..8374,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__s",
+                ),
+                span: 8384..8387,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 8374..8387,
+             },
+            ),
+           },
+           span: 8369..8387,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 8389..8399,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__format",
+                ),
+                span: 8410..8418,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 8400..8418,
+             },
+            ),
+           },
+           span: 8389..8418,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "__gnuc_va_list",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 8427..8442,
+            },
+            decl: NonAbs(
+             Node {
+              node: Ident(
+               "__arg",
+              ),
+              span: 8442..8447,
+             },
+            ),
+           },
+           span: 8427..8447,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 8359..8448,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 8348..8449,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 8454..8465,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "vprintf",
+         ),
+         span: 8465..8473,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 8474..8484,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__format",
+                ),
+                span: 8495..8503,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 8485..8503,
+             },
+            ),
+           },
+           span: 8474..8503,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "__gnuc_va_list",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 8505..8520,
+            },
+            decl: NonAbs(
+             Node {
+              node: Ident(
+               "__arg",
+              ),
+              span: 8520..8525,
+             },
+            ),
+           },
+           span: 8505..8525,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 8465..8526,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 8454..8527,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 8529..8540,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "vsprintf",
+         ),
+         span: 8540..8549,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 8550..8554,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__s",
+                ),
+                span: 8565..8568,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 8555..8568,
+             },
+            ),
+           },
+           span: 8550..8568,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 8570..8580,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__format",
+                ),
+                span: 8591..8599,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 8581..8599,
+             },
+            ),
+           },
+           span: 8570..8599,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "__gnuc_va_list",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 8608..8623,
+            },
+            decl: NonAbs(
+             Node {
+              node: Ident(
+               "__arg",
+              ),
+              span: 8623..8628,
+             },
+            ),
+           },
+           span: 8608..8628,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 8540..8629,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 8529..8631,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 8635..8646,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "snprintf",
+         ),
+         span: 8646..8655,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 8656..8660,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__s",
+                ),
+                span: 8671..8674,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 8661..8674,
+             },
+            ),
+           },
+           span: 8656..8674,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "size_t",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 8676..8683,
+            },
+            decl: NonAbs(
+             Node {
+              node: Ident(
+               "__maxlen",
+              ),
+              span: 8683..8691,
+             },
+            ),
+           },
+           span: 8676..8691,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 8700..8710,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__format",
+                ),
+                span: 8721..8729,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 8711..8729,
+             },
+            ),
+           },
+           span: 8700..8729,
+          },
+         ],
+         more: true,
+        },
+       ),
+       span: 8646..8735,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 8635..8742,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 8744..8755,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "vsnprintf",
+         ),
+         span: 8755..8765,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 8766..8770,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__s",
+                ),
+                span: 8781..8784,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 8771..8784,
+             },
+            ),
+           },
+           span: 8766..8784,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "size_t",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 8786..8793,
+            },
+            decl: NonAbs(
+             Node {
+              node: Ident(
+               "__maxlen",
+              ),
+              span: 8793..8801,
+             },
+            ),
+           },
+           span: 8786..8801,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 8811..8821,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__format",
+                ),
+                span: 8832..8840,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 8822..8840,
+             },
+            ),
+           },
+           span: 8811..8840,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "__gnuc_va_list",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 8842..8857,
+            },
+            decl: NonAbs(
+             Node {
+              node: Ident(
+               "__arg",
+              ),
+              span: 8857..8862,
+             },
+            ),
+           },
+           span: 8842..8862,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 8755..8863,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 8744..8870,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 8904..8915,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "fscanf",
+         ),
+         span: 8915..8922,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "FILE",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 8923..8928,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__stream",
+                ),
+                span: 8938..8946,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 8928..8946,
+             },
+            ),
+           },
+           span: 8923..8946,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 8953..8963,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__format",
+                ),
+                span: 8974..8982,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 8964..8982,
+             },
+            ),
+           },
+           span: 8953..8982,
+          },
+         ],
+         more: true,
+        },
+       ),
+       span: 8915..8988,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 8904..8990,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 8995..9006,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "scanf",
+         ),
+         span: 9006..9012,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 9013..9023,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__format",
+                ),
+                span: 9034..9042,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 9024..9042,
+             },
+            ),
+           },
+           span: 9013..9042,
+          },
+         ],
+         more: true,
+        },
+       ),
+       span: 9006..9048,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 8995..9050,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 9052..9063,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "sscanf",
+         ),
+         span: 9063..9070,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 9071..9081,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__s",
+                ),
+                span: 9092..9095,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 9082..9095,
+             },
+            ),
+           },
+           span: 9071..9095,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 9102..9112,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__format",
+                ),
+                span: 9123..9131,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 9113..9131,
+             },
+            ),
+           },
+           span: 9102..9131,
+          },
+         ],
+         more: true,
+        },
+       ),
+       span: 9063..9137,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 9052..9139,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: LongDouble,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 9434..9454,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "_Float128",
+       ),
+       span: 9454..9463,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 9434..9464,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: Float,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 9839..9853,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "_Float32",
+       ),
+       span: 9853..9861,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 9839..9862,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: Double,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 9927..9942,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "_Float64",
+       ),
+       span: 9942..9950,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 9927..9951,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: Double,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 10016..10031,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "_Float32x",
+       ),
+       span: 10031..10040,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 10016..10041,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: LongDouble,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       1,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 10106..10126,
+    },
+    inits: [
+     (
+      Node {
+       node: Ident(
+        "_Float64x",
+       ),
+       span: 10126..10135,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 10106..10136,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 10263..10274,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "__isoc99_fscanf",
+         ),
+         span: 10274..10290,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "FILE",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 10291..10296,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__stream",
+                ),
+                span: 10306..10314,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 10296..10314,
+             },
+            ),
+           },
+           span: 10291..10314,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 10323..10333,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__format",
+                ),
+                span: 10344..10352,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 10334..10352,
+             },
+            ),
+           },
+           span: 10323..10352,
+          },
+         ],
+         more: true,
+        },
+       ),
+       span: 10274..10358,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 10263..10360,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 10361..10372,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "__isoc99_scanf",
+         ),
+         span: 10372..10387,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 10388..10398,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__format",
+                ),
+                span: 10409..10417,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 10399..10417,
+             },
+            ),
+           },
+           span: 10388..10417,
+          },
+         ],
+         more: true,
+        },
+       ),
+       span: 10372..10423,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 10361..10425,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 10426..10437,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "__isoc99_sscanf",
+         ),
+         span: 10437..10453,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 10454..10464,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__s",
+                ),
+                span: 10475..10478,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 10465..10478,
+             },
+            ),
+           },
+           span: 10454..10478,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 10487..10497,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__format",
+                ),
+                span: 10508..10516,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 10498..10516,
+             },
+            ),
+           },
+           span: 10487..10516,
+          },
+         ],
+         more: true,
+        },
+       ),
+       span: 10437..10522,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 10426..10524,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 10558..10569,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "vfscanf",
+         ),
+         span: 10569..10577,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "FILE",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 10578..10583,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__s",
+                ),
+                span: 10593..10596,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 10583..10596,
+             },
+            ),
+           },
+           span: 10578..10596,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 10598..10608,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__format",
+                ),
+                span: 10619..10627,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 10609..10627,
+             },
+            ),
+           },
+           span: 10598..10627,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "__gnuc_va_list",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 10635..10650,
+            },
+            decl: NonAbs(
+             Node {
+              node: Ident(
+               "__arg",
+              ),
+              span: 10650..10655,
+             },
+            ),
+           },
+           span: 10635..10655,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 10569..10656,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 10558..10663,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 10669..10680,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "vscanf",
+         ),
+         span: 10680..10687,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 10688..10698,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__format",
+                ),
+                span: 10709..10717,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 10699..10717,
+             },
+            ),
+           },
+           span: 10688..10717,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "__gnuc_va_list",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 10719..10734,
+            },
+            decl: NonAbs(
+             Node {
+              node: Ident(
+               "__arg",
+              ),
+              span: 10734..10739,
+             },
+            ),
+           },
+           span: 10719..10739,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 10680..10740,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 10669..10747,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 10750..10761,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "vsscanf",
+         ),
+         span: 10761..10769,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 10770..10780,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__s",
+                ),
+                span: 10791..10794,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 10781..10794,
+             },
+            ),
+           },
+           span: 10770..10794,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 10802..10812,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__format",
+                ),
+                span: 10823..10831,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 10813..10831,
+             },
+            ),
+           },
+           span: 10802..10831,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "__gnuc_va_list",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 10833..10848,
+            },
+            decl: NonAbs(
+             Node {
+              node: Ident(
+               "__arg",
+              ),
+              span: 10848..10853,
+             },
+            ),
+           },
+           span: 10833..10853,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 10761..10854,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 10750..10861,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 10895..10906,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "__isoc99_vfscanf",
+         ),
+         span: 10906..10923,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "FILE",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 10924..10929,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__s",
+                ),
+                span: 10939..10942,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 10929..10942,
+             },
+            ),
+           },
+           span: 10924..10942,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 10952..10962,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__format",
+                ),
+                span: 10973..10981,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 10963..10981,
+             },
+            ),
+           },
+           span: 10952..10981,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "__gnuc_va_list",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 10991..11006,
+            },
+            decl: NonAbs(
+             Node {
+              node: Ident(
+               "__arg",
+              ),
+              span: 11006..11011,
+             },
+            ),
+           },
+           span: 10991..11011,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 10906..11012,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 10895..11014,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 11015..11026,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "__isoc99_vscanf",
+         ),
+         span: 11026..11042,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 11043..11053,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__format",
+                ),
+                span: 11064..11072,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 11054..11072,
+             },
+            ),
+           },
+           span: 11043..11072,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "__gnuc_va_list",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 11081..11096,
+            },
+            decl: NonAbs(
+             Node {
+              node: Ident(
+               "__arg",
+              ),
+              span: 11096..11101,
+             },
+            ),
+           },
+           span: 11081..11101,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 11026..11102,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 11015..11104,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 11105..11116,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "__isoc99_vsscanf",
+         ),
+         span: 11116..11133,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 11134..11144,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__s",
+                ),
+                span: 11155..11158,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 11145..11158,
+             },
+            ),
+           },
+           span: 11134..11158,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 11168..11178,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__format",
+                ),
+                span: 11189..11197,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 11179..11197,
+             },
+            ),
+           },
+           span: 11168..11197,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "__gnuc_va_list",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 11207..11222,
+            },
+            decl: NonAbs(
+             Node {
+              node: Ident(
+               "__arg",
+              ),
+              span: 11222..11227,
+             },
+            ),
+           },
+           span: 11207..11227,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 11116..11228,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 11105..11230,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 11264..11275,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "fgetc",
+         ),
+         span: 11275..11281,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "FILE",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 11282..11287,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__stream",
+                ),
+                span: 11288..11296,
+               },
+               TypeQual(
+                0,
+               ),
+              ),
+              span: 11287..11296,
+             },
+            ),
+           },
+           span: 11282..11296,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 11275..11297,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 11264..11298,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 11299..11310,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "getc",
+         ),
+         span: 11310..11315,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "FILE",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 11316..11321,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__stream",
+                ),
+                span: 11322..11330,
+               },
+               TypeQual(
+                0,
+               ),
+              ),
+              span: 11321..11330,
+             },
+            ),
+           },
+           span: 11316..11330,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 11310..11331,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 11299..11332,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 11338..11349,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "getchar",
+         ),
+         span: 11349..11357,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: Void,
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 11358..11362,
+            },
+            decl: AbsDecl(
+             None,
+            ),
+           },
+           span: 11358..11362,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 11349..11363,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 11338..11364,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 11398..11409,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "fputc",
+         ),
+         span: 11409..11415,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SInt,
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 11416..11420,
+            },
+            decl: NonAbs(
+             Node {
+              node: Ident(
+               "__c",
+              ),
+              span: 11420..11423,
+             },
+            ),
+           },
+           span: 11416..11423,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "FILE",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 11425..11430,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__stream",
+                ),
+                span: 11431..11439,
+               },
+               TypeQual(
+                0,
+               ),
+              ),
+              span: 11430..11439,
+             },
+            ),
+           },
+           span: 11425..11439,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 11409..11440,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 11398..11441,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 11442..11453,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "putc",
+         ),
+         span: 11453..11458,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SInt,
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 11459..11463,
+            },
+            decl: NonAbs(
+             Node {
+              node: Ident(
+               "__c",
+              ),
+              span: 11463..11466,
+             },
+            ),
+           },
+           span: 11459..11466,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "FILE",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 11468..11473,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__stream",
+                ),
+                span: 11474..11482,
+               },
+               TypeQual(
+                0,
+               ),
+              ),
+              span: 11473..11482,
+             },
+            ),
+           },
+           span: 11468..11482,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 11453..11483,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 11442..11484,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 11490..11501,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "putchar",
+         ),
+         span: 11501..11509,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SInt,
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 11510..11514,
+            },
+            decl: NonAbs(
+             Node {
+              node: Ident(
+               "__c",
+              ),
+              span: 11514..11517,
+             },
+            ),
+           },
+           span: 11510..11517,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 11501..11518,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 11490..11519,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SChar,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 11553..11564,
+    },
+    inits: [
+     (
+      Node {
+       node: Pointer(
+        Node {
+         node: Function(
+          Node {
+           node: Ident(
+            "fgets",
+           ),
+           span: 11566..11572,
+          },
+          ParamTypeList {
+           param: [
+            Node {
+             node: ParamDeclaration {
+              spec: Node {
+               node: DeclarationSpec {
+                base_type: SChar,
+                qual: TypeQual(
+                 0,
+                ),
+                storage: StorageClass(
+                 0,
+                ),
+                fn_spec: FunctionSpec(
+                 0,
+                ),
+               },
+               span: 11573..11577,
+              },
+              decl: NonAbs(
+               Node {
+                node: Pointer(
+                 Node {
+                  node: Ident(
+                   "__s",
+                  ),
+                  span: 11588..11591,
+                 },
+                 TypeQual(
+                  2,
+                 ),
+                ),
+                span: 11578..11591,
+               },
+              ),
+             },
+             span: 11573..11591,
+            },
+            Node {
+             node: ParamDeclaration {
+              spec: Node {
+               node: DeclarationSpec {
+                base_type: SInt,
+                qual: TypeQual(
+                 0,
+                ),
+                storage: StorageClass(
+                 0,
+                ),
+                fn_spec: FunctionSpec(
+                 0,
+                ),
+               },
+               span: 11593..11597,
+              },
+              decl: NonAbs(
+               Node {
+                node: Ident(
+                 "__n",
+                ),
+                span: 11597..11600,
+               },
+              ),
+             },
+             span: 11593..11600,
+            },
+            Node {
+             node: ParamDeclaration {
+              spec: Node {
+               node: DeclarationSpec {
+                base_type: TypedefName(
+                 "FILE",
+                ),
+                qual: TypeQual(
+                 0,
+                ),
+                storage: StorageClass(
+                 0,
+                ),
+                fn_spec: FunctionSpec(
+                 0,
+                ),
+               },
+               span: 11602..11607,
+              },
+              decl: NonAbs(
+               Node {
+                node: Pointer(
+                 Node {
+                  node: Ident(
+                   "__stream",
+                  ),
+                  span: 11617..11625,
+                 },
+                 TypeQual(
+                  2,
+                 ),
+                ),
+                span: 11607..11625,
+               },
+              ),
+             },
+             span: 11602..11625,
+            },
+           ],
+           more: false,
+          },
+         ),
+         span: 11566..11626,
+        },
+        TypeQual(
+         0,
+        ),
+       ),
+       span: 11565..11626,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 11553..11633,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SChar,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 11667..11678,
+    },
+    inits: [
+     (
+      Node {
+       node: Pointer(
+        Node {
+         node: Function(
+          Node {
+           node: Ident(
+            "gets",
+           ),
+           span: 11680..11685,
+          },
+          ParamTypeList {
+           param: [
+            Node {
+             node: ParamDeclaration {
+              spec: Node {
+               node: DeclarationSpec {
+                base_type: SChar,
+                qual: TypeQual(
+                 0,
+                ),
+                storage: StorageClass(
+                 0,
+                ),
+                fn_spec: FunctionSpec(
+                 0,
+                ),
+               },
+               span: 11686..11690,
+              },
+              decl: NonAbs(
+               Node {
+                node: Pointer(
+                 Node {
+                  node: Ident(
+                   "__s",
+                  ),
+                  span: 11692..11695,
+                 },
+                 TypeQual(
+                  0,
+                 ),
+                ),
+                span: 11691..11695,
+               },
+              ),
+             },
+             span: 11686..11695,
+            },
+           ],
+           more: false,
+          },
+         ),
+         span: 11680..11696,
+        },
+        TypeQual(
+         0,
+        ),
+       ),
+       span: 11679..11696,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 11667..11698,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 11732..11743,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "fputs",
+         ),
+         span: 11743..11749,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 11750..11760,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__s",
+                ),
+                span: 11771..11774,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 11761..11774,
+             },
+            ),
+           },
+           span: 11750..11774,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "FILE",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 11776..11781,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__stream",
+                ),
+                span: 11791..11799,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 11781..11799,
+             },
+            ),
+           },
+           span: 11776..11799,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 11743..11800,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 11732..11801,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 11807..11818,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "puts",
+         ),
+         span: 11818..11823,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 11824..11834,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__s",
+                ),
+                span: 11836..11839,
+               },
+               TypeQual(
+                0,
+               ),
+              ),
+              span: 11835..11839,
+             },
+            ),
+           },
+           span: 11824..11839,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 11818..11840,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 11807..11841,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 11848..11859,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "ungetc",
+         ),
+         span: 11859..11866,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SInt,
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 11867..11871,
+            },
+            decl: NonAbs(
+             Node {
+              node: Ident(
+               "__c",
+              ),
+              span: 11871..11874,
+             },
+            ),
+           },
+           span: 11867..11874,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "FILE",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 11876..11881,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__stream",
+                ),
+                span: 11882..11890,
+               },
+               TypeQual(
+                0,
+               ),
+              ),
+              span: 11881..11890,
+             },
+            ),
+           },
+           span: 11876..11890,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 11859..11891,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 11848..11892,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: TypedefName(
+       "size_t",
+      ),
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 11899..11913,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "fread",
+         ),
+         span: 11913..11919,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: Void,
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 11920..11924,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__ptr",
+                ),
+                span: 11935..11940,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 11925..11940,
+             },
+            ),
+           },
+           span: 11920..11940,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "size_t",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 11942..11949,
+            },
+            decl: NonAbs(
+             Node {
+              node: Ident(
+               "__size",
+              ),
+              span: 11949..11955,
+             },
+            ),
+           },
+           span: 11942..11955,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "size_t",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 11964..11971,
+            },
+            decl: NonAbs(
+             Node {
+              node: Ident(
+               "__n",
+              ),
+              span: 11971..11974,
+             },
+            ),
+           },
+           span: 11964..11974,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "FILE",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 11976..11981,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__stream",
+                ),
+                span: 11991..11999,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 11981..11999,
+             },
+            ),
+           },
+           span: 11976..11999,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 11913..12000,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 11899..12002,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: TypedefName(
+       "size_t",
+      ),
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 12007..12021,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "fwrite",
+         ),
+         span: 12021..12028,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: Void,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 12029..12039,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__ptr",
+                ),
+                span: 12050..12055,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 12040..12055,
+             },
+            ),
+           },
+           span: 12029..12055,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "size_t",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 12057..12064,
+            },
+            decl: NonAbs(
+             Node {
+              node: Ident(
+               "__size",
+              ),
+              span: 12064..12070,
+             },
+            ),
+           },
+           span: 12057..12070,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "size_t",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 12080..12087,
+            },
+            decl: NonAbs(
+             Node {
+              node: Ident(
+               "__n",
+              ),
+              span: 12087..12090,
+             },
+            ),
+           },
+           span: 12080..12090,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "FILE",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 12092..12097,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__s",
+                ),
+                span: 12107..12110,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 12097..12110,
+             },
+            ),
+           },
+           span: 12092..12110,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 12021..12111,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 12007..12112,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 12146..12157,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "fseek",
+         ),
+         span: 12157..12163,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "FILE",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 12164..12169,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__stream",
+                ),
+                span: 12170..12178,
+               },
+               TypeQual(
+                0,
+               ),
+              ),
+              span: 12169..12178,
+             },
+            ),
+           },
+           span: 12164..12178,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SLong,
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 12180..12189,
+            },
+            decl: NonAbs(
+             Node {
+              node: Ident(
+               "__off",
+              ),
+              span: 12189..12194,
+             },
+            ),
+           },
+           span: 12180..12194,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SInt,
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 12196..12200,
+            },
+            decl: NonAbs(
+             Node {
+              node: Ident(
+               "__whence",
+              ),
+              span: 12200..12208,
+             },
+            ),
+           },
+           span: 12196..12208,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 12157..12209,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 12146..12210,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SLong,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 12215..12231,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "ftell",
+         ),
+         span: 12231..12237,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "FILE",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 12238..12243,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__stream",
+                ),
+                span: 12244..12252,
+               },
+               TypeQual(
+                0,
+               ),
+              ),
+              span: 12243..12252,
+             },
+            ),
+           },
+           span: 12238..12252,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 12231..12253,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 12215..12255,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: Void,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 12260..12272,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "rewind",
+         ),
+         span: 12272..12279,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "FILE",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 12280..12285,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__stream",
+                ),
+                span: 12286..12294,
+               },
+               TypeQual(
+                0,
+               ),
+              ),
+              span: 12285..12294,
+             },
+            ),
+           },
+           span: 12280..12294,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 12272..12295,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 12260..12296,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 12330..12341,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "fgetpos",
+         ),
+         span: 12341..12349,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "FILE",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 12350..12355,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__stream",
+                ),
+                span: 12365..12373,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 12355..12373,
+             },
+            ),
+           },
+           span: 12350..12373,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "fpos_t",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 12375..12382,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__pos",
+                ),
+                span: 12392..12397,
+               },
+               TypeQual(
+                2,
+               ),
+              ),
+              span: 12382..12397,
+             },
+            ),
+           },
+           span: 12375..12397,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 12341..12398,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 12330..12399,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 12404..12415,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "fsetpos",
+         ),
+         span: 12415..12423,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "FILE",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 12424..12429,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__stream",
+                ),
+                span: 12430..12438,
+               },
+               TypeQual(
+                0,
+               ),
+              ),
+              span: 12429..12438,
+             },
+            ),
+           },
+           span: 12424..12438,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "fpos_t",
+              ),
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 12440..12453,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__pos",
+                ),
+                span: 12454..12459,
+               },
+               TypeQual(
+                0,
+               ),
+              ),
+              span: 12453..12459,
+             },
+            ),
+           },
+           span: 12440..12459,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 12415..12460,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 12404..12461,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: Void,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 12495..12507,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "clearerr",
+         ),
+         span: 12507..12516,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "FILE",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 12517..12522,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__stream",
+                ),
+                span: 12523..12531,
+               },
+               TypeQual(
+                0,
+               ),
+              ),
+              span: 12522..12531,
+             },
+            ),
+           },
+           span: 12517..12531,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 12507..12532,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 12495..12534,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 12536..12547,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "feof",
+         ),
+         span: 12547..12552,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "FILE",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 12553..12558,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__stream",
+                ),
+                span: 12559..12567,
+               },
+               TypeQual(
+                0,
+               ),
+              ),
+              span: 12558..12567,
+             },
+            ),
+           },
+           span: 12553..12567,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 12547..12568,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 12536..12570,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 12572..12583,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "ferror",
+         ),
+         span: 12583..12590,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "FILE",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 12591..12596,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__stream",
+                ),
+                span: 12597..12605,
+               },
+               TypeQual(
+                0,
+               ),
+              ),
+              span: 12596..12605,
+             },
+            ),
+           },
+           span: 12591..12605,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 12583..12606,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 12572..12608,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: Void,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 12642..12654,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "perror",
+         ),
+         span: 12654..12661,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SChar,
+              qual: TypeQual(
+               1,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 12662..12672,
+            },
+            decl: NonAbs(
+             Node {
+              node: Pointer(
+               Node {
+                node: Ident(
+                 "__s",
+                ),
+                span: 12674..12677,
+               },
+               TypeQual(
+                0,
+               ),
+              ),
+              span: 12673..12677,
+             },
+            ),
+           },
+           span: 12662..12677,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 12654..12678,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 12642..12679,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 12713..12724,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "__uflow",
+         ),
+         span: 12724..12732,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "FILE",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 12733..12738,
+            },
+            decl: AbsDecl(
+             Some(
+              Pointer(
+               None,
+              ),
+             ),
+            ),
+           },
+           span: 12733..12739,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 12724..12740,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 12713..12741,
+ },
+ Node {
+  node: Declaration(
+   Declaration {
+    typ: Node {
+     node: DeclarationSpec {
+      base_type: SInt,
+      qual: TypeQual(
+       0,
+      ),
+      storage: StorageClass(
+       2,
+      ),
+      fn_spec: FunctionSpec(
+       0,
+      ),
+     },
+     span: 12742..12753,
+    },
+    inits: [
+     (
+      Node {
+       node: Function(
+        Node {
+         node: Ident(
+          "__overflow",
+         ),
+         span: 12753..12764,
+        },
+        ParamTypeList {
+         param: [
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: TypedefName(
+               "FILE",
+              ),
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 12765..12770,
+            },
+            decl: AbsDecl(
+             Some(
+              Pointer(
+               None,
+              ),
+             ),
+            ),
+           },
+           span: 12765..12771,
+          },
+          Node {
+           node: ParamDeclaration {
+            spec: Node {
+             node: DeclarationSpec {
+              base_type: SInt,
+              qual: TypeQual(
+               0,
+              ),
+              storage: StorageClass(
+               0,
+              ),
+              fn_spec: FunctionSpec(
+               0,
+              ),
+             },
+             span: 12773..12776,
+            },
+            decl: AbsDecl(
+             None,
+            ),
+           },
+           span: 12773..12776,
+          },
+         ],
+         more: false,
+        },
+       ),
+       span: 12753..12777,
+      },
+      None,
+     ),
+    ],
+   },
+  ),
+  span: 12742..12778,
+ },
+ Node {
+  node: Function(
+   FunctionDef {
+    decl_spec: DeclarationSpec {
+     base_type: SInt,
+     qual: TypeQual(
+      0,
+     ),
+     storage: StorageClass(
+      0,
+     ),
+     fn_spec: FunctionSpec(
+      0,
+     ),
+    },
+    declarator: Node {
+     node: Function(
+      Node {
+       node: Ident(
+        "main",
+       ),
+       span: 12841..12845,
+      },
+      ParamTypeList {
+       param: [],
+       more: false,
+      },
+     ),
+     span: 12841..12847,
+    },
+    declarations: [],
+    body: [],
+   },
+  ),
+  span: 12837..12851,
+ },
+]
