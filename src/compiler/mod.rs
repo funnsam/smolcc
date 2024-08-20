@@ -212,8 +212,8 @@ peg::parser! {
             l:position!() "-" _ x:(@) { Node { span: l..x.span.end, node: Expr::Neg(Box::new(x)) } }
             l:position!() "~" _ x:(@) { Node { span: l..x.span.end, node: Expr::BwNot(Box::new(x)) } }
             l:position!() "!" _ x:(@) { Node { span: l..x.span.end, node: Expr::LcNot(Box::new(x)) } }
-            l:position!() "sizeof" ___ x:(@) { Node { span: l..x.span.end, node: Expr::SizeOfE(Box::new(x)) } }
             l:position!() "sizeof" ___ "(" _ t:type_name() _ ")" r:position!() { Node { span: l..r, node: Expr::SizeOfT(t) } }
+            l:position!() "sizeof" ___ x:(@) { Node { span: l..x.span.end, node: Expr::SizeOfE(Box::new(x)) } }
             --
             x:(@) _ "[" _ i:expr() _ "]" r:position!() { Node { span: x.span.start..r, node: Expr::Index(Box::new(x), Box::new(i)) } }
             x:(@) _ "(" _ i:(assign_expr() ** (_ "," _)) _ ")" r:position!() { Node { span: x.span.start..r, node: Expr::FnCall(Box::new(x), i) } }
