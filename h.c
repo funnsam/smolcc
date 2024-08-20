@@ -1,3 +1,2 @@
-// correct: 15 * (sizeof(int)) - (4 * sizeof(void*)) - sizeof(size_t)
-// parsed: 15 * sizeof ((int) - 4) ...
-char _unused2[15 * sizeof (int) - 4 * sizeof (void *) - sizeof (size_t)];
+int *main();
+int (*main)();

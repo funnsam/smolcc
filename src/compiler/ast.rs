@@ -230,7 +230,7 @@ impl<'a> BaseType<'a> {
 
 #[derive(Debug, Clone)]
 pub struct TypeName<'a> {
-    pub spec: DeclarationSpec<'a>,
+    pub spec: Node<DeclarationSpec<'a>>,
     pub decl: Option<Box<AbsDeclarator<'a>>>,
 }
 
@@ -242,7 +242,7 @@ pub struct Declaration<'a> {
 
 #[derive(Debug, Clone)]
 pub enum Declarator<'a> {
-    Ident(&'a str),
+    Root(&'a str, Node<DeclarationSpec<'a>>),
     Pointer(Box<Node<Self>>, TypeQual),
     Array(Box<Node<Self>>, TypeQual, Option<Node<Expr<'a>>>),
     Function(Box<Node<Self>>, ParamTypeList<'a>),
