@@ -1,2 +1,4 @@
-typedef int B;
-const B h;
+#include <stdio.h>
+
+int main() {
+}

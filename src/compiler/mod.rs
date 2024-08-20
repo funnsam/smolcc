@@ -1,11 +1,54 @@
+use core::fmt;
+
 pub mod ast;
+
+#[derive(Default, Debug, Clone, PartialEq, Eq)]
+pub struct LineAttr<'a> {
+    pub file: Option<&'a str>,
+    pub line: usize,
+    pub start: usize,
+}
+
+impl fmt::Display for LineAttr<'_> {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}:{}", self.file.unwrap_or("<unknown>"), self.line)
+    }
+}
+
+peg::parser! {
+    pub grammar lines() for str {
+        pub rule find_lines() -> Vec<LineAttr<'input>>
+            = l:_find_lines(&LineAttr::default()) { l };
+        rule _find_lines(p: &LineAttr<'input>) -> Vec<LineAttr<'input>>
+            = start:position!() ![_] { vec![LineAttr { file: p.file, line: p.line + 1, start }] }
+            / l:line(p) r:_find_lines(&l) { [vec![l], r].concat() }
+            / l:line(p) { vec![l] };
+
+        rule _ = quiet! { [' ' | '\t']* };
+        rule __ = quiet! { [^ '\n']* "\n" };
+        rule ___ = quiet! { [^ '\n']* ("\n" / ![_]) };
+
+        rule line(p: &LineAttr<'input>) -> LineAttr<'input>
+            = start:position!() _ "#" _ "line"? _ line:pp_int() _ file:string_lit()? ___ { LineAttr { file, line: line.saturating_sub(1), start } }
+            / start:position!() __ { LineAttr { file: p.file, line: p.line + 1, start } };
+
+        rule string_lit() -> &'input str
+            = quiet! { _ "\"" s:$(s_char()*) "\"" _ { s } }
+            / expected!("string literal");
+        rule s_char()
+            = "\\" [_]
+            / [^ '\"'];
+
+        rule pp_int() -> usize
+            = n:$(['1'..='9']['0'..='9']*) {? n.parse().or(Err("value too big")) };
+    }
+}
 
 peg::parser! {
     pub grammar parser() for str {
         use super::ast::*;
 
-        // temp testing thing
-        pub rule numbers() -> Vec<Node<ExternalDecl<'input>>>
+        pub rule translation_unit() -> Vec<Node<ExternalDecl<'input>>>
             = _ l:(external_decl() ** _) _ { l }
 
         // utilities
@@ -13,18 +56,24 @@ peg::parser! {
             = ['0'..='9' | 'a'..='f' | 'A'..='F']+ {};
 
         rule _
-            = quiet! { [' ' | '\n' | '\t']* ("/*" b_comment_c()* "*/" _)? ("//" [^ '\n']* _)? }
+            = quiet! { "\\\n" _ }
+            / quiet! { "/*" b_comment_c()* "*/" _ }
+            / quiet! { "#" [^ '\n']* _ }
+            / quiet! { "//" [^ '\n']* _ }
+            / quiet! { [' ' | '\n' | '\t']+ _ }
+            / quiet!{};
         rule b_comment_c()
             = [^ '*']
             / "*" !"/";
         rule __
-            = quiet! { &[' ' | '\n' | '\t' | '[' | ']' | '{' | '}' | '.' | '-' | '+' | '&' | '*' | '~' | '!' | '/' | '%' | '<' | '>' | '=' | '?' | ':' | ';' | ',' | '#' | '(' | ')'] };
+            = quiet! { &[' ' | '\n' | '\t' | '[' | ']' | '{' | '}' | '.' | '-' | '+' | '&' | '*' | '~' | '!' | '/' | '%' | '<' | '>' | '=' | '?' | ':' | ';' | ',' | '#' | '(' | ')' | '\\'] }
+            / quiet! { ![_] };
         rule ___
             = quiet! { __ _ }
 
         rule ident() -> &'input str
             = quiet! { _ i:$(['_' | 'a'..='z' | 'A'..='Z']['_' | '0'..='9' | 'a'..='z' | 'A'..='Z']*) _ {?
-                (!matches!(i, "auto" | "break" | "case" | "char" | "const" | "continue" | "default" | "do" | "double" | "else" | "enum" | "extern" | "float" | "for" | "goto" | "if" | "inline" | "int" | "long" | "register" | "restrict" | "return" | "short" | "signed" | "sizeof" | "static" | "struct" | "switch" | "typedef" | "union" | "unsigned" | "void" | "volatile" | "while" | "_Bool" | "_Complex" | "_Imaginary")).then_some(i).ok_or("identifier can't be a keyword")
+                (!matches!(i, "auto" | "break" | "case" | "char" | "const" | "continue" | "default" | "do" | "double" | "else" | "enum" | "extern" | "float" | "for" | "goto" | "if" | "inline" | "int" | "long" | "register" | "__restrict" | "restrict" | "return" | "short" | "signed" | "sizeof" | "static" | "struct" | "switch" | "typedef" | "union" | "unsigned" | "void" | "volatile" | "while" | "_Bool" | "_Complex" | "_Imaginary")).then_some(i).ok_or("")
             } }
             / expected!("identifier");
 
@@ -179,7 +228,11 @@ peg::parser! {
 
         // 6.7.1
         rule storage_class() -> StorageClass
-            = "typedef" __ { StorageClass::TYPEDEF };
+            = "typedef" __ { StorageClass::TYPEDEF }
+            / "extern" __ { StorageClass::EXTERN }
+            / "static" __ { StorageClass::STATIC }
+            / "auto" __ { StorageClass::AUTO }
+            / "register" __ { StorageClass::REGISTER }
 
         // 6.7.2 type specifiers
         rule type_spec() -> TypeSpec<'input>
@@ -241,7 +294,7 @@ peg::parser! {
         // 6.7.3 type qualifiers
         rule type_qual() -> TypeQual
             = "const" __ { TypeQual::CONST }
-            / "restrict" __ { TypeQual::RESTRICT }
+            / "__"? "restrict" __ { TypeQual::RESTRICT }
             / "volatile" __ { TypeQual::VOLATILE };
         rule type_quals() -> TypeQual
             = q:(type_qual() ** ___) { q.iter().fold(TypeQual::default(), |a, q| a | *q) };
@@ -251,6 +304,10 @@ peg::parser! {
             = "inline" __ { FunctionSpec::INLINE };
 
         // 6.7.5
+        rule param_type_list() -> ParamTypeList<'input>
+            = param:(param_decl() ++ (_ "," _)) _ "," _ "..." { ParamTypeList { param, more: true } }
+            / param:(param_decl() ** (_ "," _)) { ParamTypeList { param, more: false } };
+
         rule param_decl() -> Node<ParamDeclaration<'input>>
             = l:position!() ds:declaration_spec() _ d:declarator() r:position!() { Node { node: ParamDeclaration {
                 spec: ds,
@@ -263,7 +320,7 @@ peg::parser! {
 
         // 6.7.6
         rule type_name() -> Node<TypeName<'input>>
-            = l:position!() spec:spec_qual_list() decl:abs_declarator() r:position!() { Node { node: TypeName { spec, decl: decl.map(Box::new) }, span: l..r } };
+            = l:position!() spec:spec_qual_list() _ decl:abs_declarator() r:position!() { Node { node: TypeName { spec, decl: decl.map(Box::new) }, span: l..r } };
 
         rule abs_declarator() -> Option<AbsDeclarator<'input>>
             = d:_abs_declarator() { Some(d) }
@@ -273,7 +330,7 @@ peg::parser! {
             = "*" d:abs_declarator() { AbsDeclarator::Pointer(d.map(Box::new)) }
             / "[" _ e:assign_expr()? _ "]" _ d:abs_declarator() { AbsDeclarator::Array(d.map(Box::new), TypeQual::default(), e) }
             / "[" _ q:type_quals() ___ e:assign_expr()? _ "]" _ d:abs_declarator() { AbsDeclarator::Array(d.map(Box::new), q, e) }
-            / "(" _ p:(param_decl() ** (_ "," _)) _ ")" _ d:abs_declarator() { AbsDeclarator::Function(d.map(Box::new), p) }
+            / "(" _ p:param_type_list() _ ")" _ d:abs_declarator() { AbsDeclarator::Function(d.map(Box::new), p) }
             / "(" _ d:_abs_declarator() _ ")" { d };
 
         // 6.7.8
@@ -302,11 +359,11 @@ peg::parser! {
             / expected!("declaration item");
 
         rule declarator() -> Node<Declarator<'input>> = precedence! {
-            l:position!() "*" _ d:@ { Node { span: l..d.span.end, node: Declarator::Pointer(Box::new(d)) } }
+            l:position!() "*" _ q:type_quals() _ d:@ { Node { span: l..d.span.end, node: Declarator::Pointer(Box::new(d), q) } }
             --
             d:@ _ "[" _ e:assign_expr()? _ "]" r:position!() { Node { span: d.span.start..r, node: Declarator::Array(Box::new(d), TypeQual::default(), e) } }
             d:@ _ "[" _ q:type_quals() ___ e:assign_expr()? _ "]" r:position!() { Node { span: d.span.start..r, node: Declarator::Array(Box::new(d), q, e) } }
-            d:@ _ "(" _ p:(param_decl() ** (_ "," _)) _ ")" r:position!() { Node { span: d.span.start..r, node: Declarator::Function(Box::new(d), p) } }
+            d:@ _ "(" _ p:param_type_list() _ ")" r:position!() { Node { span: d.span.start..r, node: Declarator::Function(Box::new(d), p) } }
             --
             d:decl_ident() { d }
             l:position!() "(" _ d:declarator() _ ")" r:position!() { Node { node: d.node, span: l..r } }

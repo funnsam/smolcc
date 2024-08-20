@@ -243,9 +243,9 @@ pub struct Declaration<'a> {
 #[derive(Debug, Clone)]
 pub enum Declarator<'a> {
     Ident(&'a str),
-    Pointer(Box<Node<Self>>),
+    Pointer(Box<Node<Self>>, TypeQual),
     Array(Box<Node<Self>>, TypeQual, Option<Node<Expr<'a>>>),
-    Function(Box<Node<Self>>, Vec<Node<ParamDeclaration<'a>>>),
+    Function(Box<Node<Self>>, ParamTypeList<'a>),
 }
 
 #[derive(Debug, Clone)]
@@ -265,7 +265,13 @@ pub enum Designator<'a> {
 pub enum AbsDeclarator<'a> {
     Pointer(Option<Box<Self>>),
     Array(Option<Box<Self>>, TypeQual, Option<Node<Expr<'a>>>),
-    Function(Option<Box<Self>>, Vec<Node<ParamDeclaration<'a>>>),
+    Function(Option<Box<Self>>, ParamTypeList<'a>),
+}
+
+#[derive(Debug, Clone)]
+pub struct ParamTypeList<'a> {
+    pub param: Vec<Node<ParamDeclaration<'a>>>,
+    pub more: bool,
 }
 
 #[derive(Debug, Clone)]
