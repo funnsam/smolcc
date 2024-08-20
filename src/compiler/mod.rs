@@ -73,7 +73,7 @@ peg::parser! {
 
         rule ident() -> &'input str
             = quiet! { _ i:$(['_' | 'a'..='z' | 'A'..='Z']['_' | '0'..='9' | 'a'..='z' | 'A'..='Z']*) _ {?
-                (!matches!(i, "auto" | "break" | "case" | "char" | "const" | "continue" | "default" | "do" | "double" | "else" | "enum" | "extern" | "float" | "for" | "goto" | "if" | "inline" | "int" | "long" | "register" | "__restrict" | "restrict" | "return" | "short" | "signed" | "sizeof" | "static" | "struct" | "switch" | "typedef" | "union" | "unsigned" | "void" | "volatile" | "while" | "_Bool" | "_Complex" | "_Imaginary")).then_some(i).ok_or("")
+                (!matches!(i, "auto" | "break" | "case" | "char" | "const" | "continue" | "default" | "do" | "double" | "else" | "enum" | "extern" | "float" | "for" | "goto" | "if" | "inline" | "int" | "long" | "register" | "__restrict" | "__restrict__" | "restrict" | "return" | "short" | "signed" | "sizeof" | "static" | "struct" | "switch" | "typedef" | "union" | "unsigned" | "void" | "volatile" | "while" | "_Bool" | "_Complex" | "_Imaginary")).then_some(i).ok_or("")
             } }
             / expected!("identifier");
 
@@ -294,7 +294,7 @@ peg::parser! {
         // 6.7.3 type qualifiers
         rule type_qual() -> TypeQual
             = "const" __ { TypeQual::CONST }
-            / "__"? "restrict" __ { TypeQual::RESTRICT }
+            / (quiet! { "__"? } "restrict" / quiet! { "__restrict__" }) __ { TypeQual::RESTRICT }
             / "volatile" __ { TypeQual::VOLATILE };
         rule type_quals() -> TypeQual
             = q:(type_qual() ** ___) { q.iter().fold(TypeQual::default(), |a, q| a | *q) };
@@ -372,8 +372,8 @@ peg::parser! {
             = l:position!() v:ident() r:position!() { Node { node: Declarator::Ident(v), span: l..r } };
 
         rule decl_spec_tokens() -> Vec<DeclSpecToken<'input>>
-            = &type_spec() t:decl_spec_token() _ r:_decl_spec_tokens() { let mut r = r; r.push(t); r }
-            / !type_spec() t:decl_spec_token() _ r:decl_spec_tokens() { let mut r = r; r.push(t); r }
+            = &("auto" __ / type_spec()) t:decl_spec_token() _ r:_decl_spec_tokens() { let mut r = r; r.push(t); r }
+            / !("auto" __ / type_spec()) t:decl_spec_token() _ r:decl_spec_tokens() { let mut r = r; r.push(t); r }
             / t:decl_spec_token() { vec![t] };
         rule _decl_spec_tokens() -> Vec<DeclSpecToken<'input>>
             = !ident() t:decl_spec_token() _ r:_decl_spec_tokens() { let mut r = r; r.push(t); r }
