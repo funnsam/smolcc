@@ -95,6 +95,7 @@ pub enum Expr<'a> {
     PfDec(Box<Node<Self>>),
     Dot(Box<Node<Self>>, &'a str),
     Arrow(Box<Node<Self>>, &'a str),
+    Initialize(Node<TypeName<'a>>, InitList<'a>),
 }
 
 #[derive(Debug, Clone)]
@@ -228,17 +229,15 @@ impl<'a> BaseType<'a> {
 }
 
 #[derive(Debug, Clone)]
-pub enum TypeName<'a> {
-    DeclarationSpec(DeclarationSpec<'a>),
-    Pointer(Box<Self>, TypeQual),
-    Array(Box<Self>, Option<Box<Node<Expr<'a>>>>),
-    Function(Box<Self>, Vec<Node<ParamDeclaration<'a>>>),
+pub struct TypeName<'a> {
+    pub spec: DeclarationSpec<'a>,
+    pub decl: Option<Box<AbsDeclarator<'a>>>,
 }
 
 #[derive(Debug, Clone)]
 pub struct Declaration<'a> {
     pub typ: Node<DeclarationSpec<'a>>,
-    pub inits: Vec<(Node<Declarator<'a>>, Option<Node<Expr<'a>>>)>,
+    pub inits: Vec<(Node<Declarator<'a>>, Option<Node<Initializer<'a>>>)>,
 }
 
 #[derive(Debug, Clone)]
@@ -247,6 +246,19 @@ pub enum Declarator<'a> {
     Pointer(Box<Node<Self>>),
     Array(Box<Node<Self>>, TypeQual, Option<Node<Expr<'a>>>),
     Function(Box<Node<Self>>, Vec<Node<ParamDeclaration<'a>>>),
+}
+
+#[derive(Debug, Clone)]
+pub enum Initializer<'a> {
+    Expression(Expr<'a>),
+    InitList(InitList<'a>),
+}
+pub type InitList<'a> = Vec<(Option<Node<Designator<'a>>>, Box<Node<Initializer<'a>>>)>;
+
+#[derive(Debug, Clone)]
+pub enum Designator<'a> {
+    Field(&'a str),
+    Index(Node<Expr<'a>>),
 }
 
 #[derive(Debug, Clone)]

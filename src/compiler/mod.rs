@@ -172,7 +172,7 @@ peg::parser! {
             x:(@) _ "--" r:position!() { Node { span: x.span.start..r, node: Expr::PfDec(Box::new(x)) } }
             x:(@) _ "." _ i:ident() r:position!() { Node { span: x.span.start..r, node: Expr::Dot(Box::new(x), i) } }
             x:(@) _ "->" _ i:ident() r:position!() { Node { span: x.span.start..r, node: Expr::Arrow(Box::new(x), i) } }
-            // TODO: {init} initialization
+            l:position!() "(" _ t:type_name() _ ")" _ "{" _ i:initializer_list() _ "}" r:position!() { Node { node: Expr::Initialize(t, i), span: l..r } }
             --
             e:prim_expr() { e }
         };
@@ -214,11 +214,20 @@ peg::parser! {
             = ident:ident() _ "=" _ expr:const_expr() { EnumItem { ident, number: Some(expr) } }
             / ident:ident() { EnumItem { ident, number: None } };
 
-        rule type_spec_or_qual() -> DeclSpecToken<'input>
+        rule type_spec_tokens() -> Vec<DeclSpecToken<'input>>
+            = &type_spec() t:type_spec_token() _ r:_type_spec_tokens() { let mut r = r; r.push(t); r }
+            / !type_spec() t:type_spec_token() _ r:type_spec_tokens() { let mut r = r; r.push(t); r }
+            / t:type_spec_token() { vec![t] };
+        rule _type_spec_tokens() -> Vec<DeclSpecToken<'input>>
+            = !ident() t:type_spec_token() _ r:_type_spec_tokens() { let mut r = r; r.push(t); r }
+            / !ident() t:type_spec_token() { vec![t] }
+            / &ident() { vec![] };
+        rule type_spec_token() -> DeclSpecToken<'input>
             = q:type_qual() { DeclSpecToken::Qual(q) }
             / s:type_spec() { DeclSpecToken::Spec(s) };
+
         rule spec_qual_list() -> DeclarationSpec<'input>
-            = sq:(type_spec_or_qual() ++ (___ !ident())) {? // NOTE: `qual()+ TypedefName` no work
+            = sq:type_spec_tokens() {?
                 Ok(DeclarationSpec {
                     base_type: BaseType::from_type_specs(sq.iter().filter_map(|f|
                         if let DeclSpecToken::Spec(s) = f { Some(s.clone()) } else { None })
@@ -254,19 +263,7 @@ peg::parser! {
 
         // 6.7.6
         rule type_name() -> Node<TypeName<'input>>
-            = l:position!() node:_type_name() r:position!() { Node { node, span: l..r } };
-
-        rule _type_name_ptr() -> TypeName<'input> = precedence! {
-            t:(@) _ "*" _ q:(type_qual() ** ___) { TypeName::Pointer(Box::new(t), q.iter().fold(TypeQual::default(), |a, q| a | *q)) }
-            type_sq:spec_qual_list() { TypeName::DeclarationSpec(type_sq) }
-        };
-        rule _type_name() -> TypeName<'input> = quiet! { precedence! {
-            t:(@) _ "[" _ s:assign_expr() _ "]" { TypeName::Array(Box::new(t), Some(Box::new(s))) }
-            t:(@) _ "[" _ "*" _ "]" { TypeName::Array(Box::new(t), None) }
-            t:(@) _ "(" _ p:(param_decl() ** (_ "," _)) _ ")" { TypeName::Function(Box::new(t), p) }
-            t:_type_name_ptr() { t }
-            "(" _ t:_type_name_ptr() _ ")" { t }
-        } } / expected!("type");
+            = l:position!() spec:spec_qual_list() decl:abs_declarator() r:position!() { Node { node: TypeName { spec, decl: decl.map(Box::new) }, span: l..r } };
 
         rule abs_declarator() -> Option<AbsDeclarator<'input>>
             = d:_abs_declarator() { Some(d) }
@@ -279,13 +276,28 @@ peg::parser! {
             / "(" _ p:(param_decl() ** (_ "," _)) _ ")" _ d:abs_declarator() { AbsDeclarator::Function(d.map(Box::new), p) }
             / "(" _ d:_abs_declarator() _ ")" { d };
 
+        // 6.7.8
+        rule initializer() -> Node<Initializer<'input>>
+            = e:assign_expr() { Node { node: Initializer::Expression(e.node), span: e.span } }
+            / l:position!() "{" _ i:initializer_list() _ "}" r:position!() { Node { node: Initializer::InitList(i), span: l..r } };
+
+        rule initializer_list() -> InitList<'input>
+            = i:(initializer_item() ++ (_ "," _)) _ ","? { i.into_iter().flatten().collect() }
+        rule initializer_item() -> InitList<'input>
+            = d:designator()+ _ "=" _ i:initializer() { d.into_iter().map(|d| (Some(d), Box::new(i.clone()))).collect() }
+            / i:initializer() { vec![(None, Box::new(i))] };
+
+        rule designator() -> Node<Designator<'input>>
+            = l:position!() "[" _ e:const_expr() _ "]" r:position!() { Node { node: Designator::Index(e), span: l..r } }
+            / l:position!() "." _ i:ident() r:position!() { Node { node: Designator::Field(i), span: l..r } };
+
         // 6.7
         rule declaration() -> Node<Declaration<'input>>
             = s:position!() typ:declaration_spec() _ inits:(decl_item() ** (_ "," _)) _ ";" e:position!() {
                 Node { node: Declaration { typ, inits }, span: s..e }
             };
-        rule decl_item() -> (Node<Declarator<'input>>, Option<Node<Expr<'input>>>)
-            = quiet! { v:declarator() _ "=" _ i:assign_expr() { (v, Some(i)) } }
+        rule decl_item() -> (Node<Declarator<'input>>, Option<Node<Initializer<'input>>>)
+            = quiet! { v:declarator() _ "=" _ i:initializer() { (v, Some(i)) } }
             / quiet! { v:declarator() { (v, None) } }
             / expected!("declaration item");
 
@@ -302,6 +314,14 @@ peg::parser! {
         rule decl_ident() -> Node<Declarator<'input>>
             = l:position!() v:ident() r:position!() { Node { node: Declarator::Ident(v), span: l..r } };
 
+        rule decl_spec_tokens() -> Vec<DeclSpecToken<'input>>
+            = &type_spec() t:decl_spec_token() _ r:_decl_spec_tokens() { let mut r = r; r.push(t); r }
+            / !type_spec() t:decl_spec_token() _ r:decl_spec_tokens() { let mut r = r; r.push(t); r }
+            / t:decl_spec_token() { vec![t] };
+        rule _decl_spec_tokens() -> Vec<DeclSpecToken<'input>>
+            = !ident() t:decl_spec_token() _ r:_decl_spec_tokens() { let mut r = r; r.push(t); r }
+            / !ident() t:decl_spec_token() { vec![t] }
+            / &ident() { vec![] };
         rule decl_spec_token() -> DeclSpecToken<'input>
             = q:type_qual() { DeclSpecToken::Qual(q) }
             / s:type_spec() { DeclSpecToken::Spec(s) }
@@ -309,8 +329,7 @@ peg::parser! {
             / f:function_spec() { DeclSpecToken::FunctionSpec(f) };
 
         rule declaration_spec() -> Node<DeclarationSpec<'input>>
-            // NOTE: `qual()+ TypedefName` no work
-            = l:position!() sq:(decl_spec_token() ++ (___ !ident())) r:position!() {?
+            = l:position!() sq:decl_spec_tokens() r:position!() {?
                 Ok(Node {
                     node: DeclarationSpec {
                         base_type: BaseType::from_type_specs(sq.iter().filter_map(|f|
