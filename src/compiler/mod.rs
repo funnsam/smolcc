@@ -1,11 +1,12 @@
 pub mod ast;
+pub mod codegen;
 pub mod lines;
 
 peg::parser! {
     pub grammar parser() for str {
         use super::ast::*;
 
-        pub rule translation_unit() -> Vec<Node<ExternalDecl<'input>>>
+        pub rule translation_unit() -> TranslationUnit<'input>
             = _ l:(external_decl() ** _) _ { l }
 
         // utilities
@@ -282,8 +283,8 @@ peg::parser! {
         rule type_name() -> Node<TypeName<'input>>
             = spec:spec_qual_list() _ decl:abs_declarator() r:position!() { Node { span: spec.span.start..r, node: TypeName { spec, decl: decl.map(Box::new) } } };
 
-        rule abs_declarator() -> Option<AbsDeclarator<'input>>
-            = d:_abs_declarator() { Some(d) }
+        rule abs_declarator() -> Option<Node<AbsDeclarator<'input>>>
+            = l:position!() d:_abs_declarator() r:position!() { Some(Node { node: d, span: l..r }) }
             / { None };
 
         rule _abs_declarator() -> AbsDeclarator<'input>
@@ -299,10 +300,10 @@ peg::parser! {
             / l:position!() "{" _ i:initializer_list() _ "}" r:position!() { Node { node: Initializer::InitList(i), span: l..r } };
 
         rule initializer_list() -> InitList<'input>
-            = i:(initializer_item() ++ (_ "," _)) _ ","? { i.into_iter().flatten().collect() }
-        rule initializer_item() -> InitList<'input>
-            = d:designator()+ _ "=" _ i:initializer() { d.into_iter().map(|d| (Some(d), Box::new(i.clone()))).collect() }
-            / i:initializer() { vec![(None, Box::new(i))] };
+            = i:(initializer_item() ++ (_ "," _)) _ ","? { i }
+        rule initializer_item() -> (Vec<Node<Designator<'input>>>, Box<Node<Initializer<'input>>>)
+            = d:designator()+ _ "=" _ i:initializer() { (d, Box::new(i)) }
+            / i:initializer() { (vec![], Box::new(i)) };
 
         rule designator() -> Node<Designator<'input>>
             = l:position!() "[" _ e:const_expr() _ "]" r:position!() { Node { node: Designator::Index(e), span: l..r } }
@@ -395,7 +396,7 @@ peg::parser! {
         // 6.9 ext defs
         rule external_decl() -> Node<ExternalDecl<'input>>
             = l:position!() decl_spec:declaration_spec() _ declarator:declarator() _ declarations:(declaration() ** _) _ body:compound_stmt() r:position!() {
-                Node { node: ExternalDecl::Function(FunctionDef { decl_spec: decl_spec.node, declarator, declarations, body }), span: l..r }
+                Node { node: ExternalDecl::Function(FunctionDef { decl_spec, declarator, declarations, body }), span: l..r }
             }
             / d:declaration() { Node { span: d.span, node: ExternalDecl::Declaration(d.node) } };
     }

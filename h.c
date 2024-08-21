@@ -4,7 +4,7 @@
 //
 // ptr(int)
 // fn(ptr(int))
-int *(a());
+// int *(a()) {}
 
 // fn(ptr(int b))
 //    ~~~2
@@ -12,7 +12,7 @@ int *(a());
 //
 // fn(int)
 // ptr(fn(int))
-int (*b)();
+// int (*b)() {}
 
 // fn(ptr(array(int, 4, p)), char)
 //        ~~~~~3
@@ -22,4 +22,10 @@ int (*b)();
 // fn(int, [char])
 // ptr(fn(int, [char]))
 // array(ptr(fn(int, [char])), 4)
-int (*(p[4])) (char);
+// int (*(p[4])) (char);
+
+// struct h { int x; } s[10] = { [0].x = 1 }; */
+
+int main(void) {
+    return 0;
+}

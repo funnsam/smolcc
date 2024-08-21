@@ -17,16 +17,41 @@ fn main() {
     let r = compiler::parser::translation_unit(&src);
 
     match r {
-        Ok(r) => println!("{r:#?}"),
-        Err(e) => report(e, &src, &lines),
+        Ok(r) => {
+            println!("{r:#?}");
+
+            if let Err(e) = compiler::codegen::Codegen::new(&r).compile() {
+                for e in e {
+                    report((e.0.to_string(), e.1), &src, &lines);
+                }
+            }
+        },
+        Err(e) => report((format!("expected {}", e.expected), e.location.offset..e.location.offset + 1), &src, &lines),
     }
 }
 
-fn report<'a>(e: peg::error::ParseError<peg::str::LineCol>, s: &'a str, lines: &[compiler::lines::LineAttr<'a>]) {
-    let line = &lines[e.location.line - 1];
-    let nl_byte = lines.get(e.location.line).map_or(s.len(), |l| l.start);
+fn report<'a>(e: (String, compiler::ast::Span), s: &'a str, lines: &[compiler::lines::LineAttr<'a>]) {
+    let line_idx = bsearch(e.1.start, lines);
+    let line = &lines[line_idx];
+    let nl_byte = lines.get(line_idx + 1).map_or(s.len(), |l| l.start);
+    let col = e.1.start - line.start + 1;
 
-    eprintln!("\x1b[1m{line}:{}: \x1b[31merror:\x1b[0m expected {}", e.location.column, e.expected);
+    eprintln!("\x1b[1m{line}:{}: \x1b[31merror:\x1b[0m {}", col, e.0);
     eprintln!("    {} | {}", line.line, s[line.start..nl_byte].trim_end());
-    eprintln!("    {0:<1$}  |{2:<3$}\x1b[1;31m^\x1b[0m", "", (line.line + 1).ilog10() as usize, "", e.location.column);
+    eprintln!("    {0:<1$}  |{2:<3$}\x1b[1;31m^\x1b[0m", "", (line.line + 1).ilog10() as usize, "", col);
+}
+
+fn bsearch(byte: usize, lines: &[compiler::lines::LineAttr<'_>]) -> usize {
+    let mut l = 0;
+    let mut r = lines.len();
+    while l < r {
+        let m = (l + r) / 2;
+        if lines[m].start > byte {
+            r = m;
+        } else {
+            l = m + 1;
+        }
+    }
+
+    r - 1
 }

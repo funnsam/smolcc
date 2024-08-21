@@ -1,7 +1,6 @@
-#![allow(unused)]
-
 use bitflags::bitflags;
 
+pub type TranslationUnit<'a> = Vec<Node<ExternalDecl<'a>>>;
 pub type Span = core::ops::Range<usize>;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -18,7 +17,7 @@ pub struct IntConst {
 }
 
 #[derive(Default, Debug, Clone, Copy, PartialEq, Eq)]
-pub struct IntSuffix(u8);
+pub struct IntSuffix(pub u8);
 
 bitflags! {
     impl IntSuffix: u8 {
@@ -117,7 +116,7 @@ pub enum TypeSpec<'a> {
 }
 
 #[derive(Default, Debug, Clone, Copy, PartialEq, Eq)]
-pub struct TypeQual(u8);
+pub struct TypeQual(pub u8);
 
 bitflags! {
     impl TypeQual: u8 {
@@ -231,7 +230,7 @@ impl<'a> BaseType<'a> {
 #[derive(Debug, Clone)]
 pub struct TypeName<'a> {
     pub spec: Node<DeclarationSpec<'a>>,
-    pub decl: Option<Box<AbsDeclarator<'a>>>,
+    pub decl: Option<Box<Node<AbsDeclarator<'a>>>>,
 }
 
 #[derive(Debug, Clone)]
@@ -253,7 +252,8 @@ pub enum Initializer<'a> {
     Expression(Expr<'a>),
     InitList(InitList<'a>),
 }
-pub type InitList<'a> = Vec<(Option<Node<Designator<'a>>>, Box<Node<Initializer<'a>>>)>;
+
+pub type InitList<'a> = Vec<(Vec<Node<Designator<'a>>>, Box<Node<Initializer<'a>>>)>;
 
 #[derive(Debug, Clone)]
 pub enum Designator<'a> {
@@ -263,9 +263,9 @@ pub enum Designator<'a> {
 
 #[derive(Debug, Clone)]
 pub enum AbsDeclarator<'a> {
-    Pointer(Option<Box<Self>>),
-    Array(Option<Box<Self>>, TypeQual, Option<Node<Expr<'a>>>),
-    Function(Option<Box<Self>>, ParamTypeList<'a>),
+    Pointer(Option<Box<Node<Self>>>),
+    Array(Option<Box<Node<Self>>>, TypeQual, Option<Node<Expr<'a>>>),
+    Function(Option<Box<Node<Self>>>, ParamTypeList<'a>),
 }
 
 #[derive(Debug, Clone)]
@@ -283,11 +283,11 @@ pub struct ParamDeclaration<'a> {
 #[derive(Debug, Clone)]
 pub enum MayAbsDeclarator<'a> {
     NonAbs(Node<Declarator<'a>>),
-    AbsDecl(Option<AbsDeclarator<'a>>),
+    AbsDecl(Option<Node<AbsDeclarator<'a>>>),
 }
 
 #[derive(Default, Debug, Clone, Copy, PartialEq, Eq)]
-pub struct StorageClass(u8);
+pub struct StorageClass(pub u8);
 
 bitflags! {
     impl StorageClass: u8 {
@@ -300,7 +300,7 @@ bitflags! {
 }
 
 #[derive(Default, Debug, Clone, Copy, PartialEq, Eq)]
-pub struct FunctionSpec(u8);
+pub struct FunctionSpec(pub u8);
 
 bitflags! {
     impl FunctionSpec: u8 {
@@ -316,7 +316,7 @@ pub enum ExternalDecl<'a> {
 
 #[derive(Debug, Clone)]
 pub struct FunctionDef<'a> {
-    pub decl_spec: DeclarationSpec<'a>,
+    pub decl_spec: Node<DeclarationSpec<'a>>,
     pub declarator: Node<Declarator<'a>>,
     pub declarations: Vec<Node<Declaration<'a>>>,
     pub body: CompoundStmt<'a>,

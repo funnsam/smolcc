@@ -181,6 +181,7 @@ dependencies = [
  "clap",
  "funnssa",
  "peg",
+ "strum",
 ]
 
 [[package]]
