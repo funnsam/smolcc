@@ -26,6 +26,8 @@
 
 // struct h { int x; } s[10] = { [0].x = 1 }; */
 
-int main(void) {
-    return 0;
+long
+long main {
+}
+void main {
 }

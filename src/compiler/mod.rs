@@ -231,8 +231,7 @@ peg::parser! {
             / t:type_spec_token() { vec![t] };
         rule _type_spec_tokens() -> Vec<DeclSpecToken<'input>>
             = !ident() t:type_spec_token() _ r:_type_spec_tokens() { let mut r = r; r.push(t); r }
-            / !ident() t:type_spec_token() { vec![t] }
-            / &ident() { vec![] };
+            / !ident() t:type_spec_token() { vec![t] };
         rule type_spec_token() -> DeclSpecToken<'input>
             = q:type_qual() { DeclSpecToken::Qual(q) }
             / s:type_spec() { DeclSpecToken::Spec(s) };
@@ -338,8 +337,7 @@ peg::parser! {
             / t:decl_spec_token() { vec![t] };
         rule _decl_spec_tokens() -> Vec<DeclSpecToken<'input>>
             = !ident() t:decl_spec_token() _ r:_decl_spec_tokens() { let mut r = r; r.push(t); r }
-            / !ident() t:decl_spec_token() { vec![t] }
-            / &ident() { vec![] };
+            / !ident() t:decl_spec_token() { vec![t] };
         rule decl_spec_token() -> DeclSpecToken<'input>
             = q:type_qual() { DeclSpecToken::Qual(q) }
             / s:type_spec() { DeclSpecToken::Spec(s) }

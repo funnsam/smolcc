@@ -33,12 +33,18 @@ fn main() {
 fn report<'a>(e: (String, compiler::ast::Span), s: &'a str, lines: &[compiler::lines::LineAttr<'a>]) {
     let line_idx = bsearch(e.1.start, lines);
     let line = &lines[line_idx];
-    let nl_byte = lines.get(line_idx + 1).map_or(s.len(), |l| l.start);
     let col = e.1.start - line.start + 1;
 
     eprintln!("\x1b[1m{line}:{}: \x1b[31merror:\x1b[0m {}", col, e.0);
-    eprintln!("    {} | {}", line.line, s[line.start..nl_byte].trim_end());
-    eprintln!("    {0:<1$}  |{2:<3$}\x1b[1;31m^\x1b[0m", "", (line.line + 1).ilog10() as usize, "", col);
+    for l in line_idx.. {
+        let line = &lines[l];
+        let nl_byte = lines.get(l + 1).map_or(s.len(), |l| l.start);
+
+        eprintln!("    {} | {}", line.line, s[line.start..nl_byte].trim_end());
+        eprintln!("    {0:<1$}  |{2:<3$}\x1b[1;31m{4:^<5$}\x1b[0m", "", (line.line + 1).ilog10() as usize, "", col, "", (e.1.end.min(nl_byte - 1) - e.1.start.max(line.start)).max(1));
+
+        if e.1.end < nl_byte { break; }
+    }
 }
 
 fn bsearch(byte: usize, lines: &[compiler::lines::LineAttr<'_>]) -> usize {
