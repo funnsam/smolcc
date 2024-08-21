@@ -217,8 +217,8 @@ peg::parser! {
         rule struct_item() -> Vec<StructItem<'input>>
             = t:spec_qual_list() _ d:(struct_declor(&t) ** (_ "," _)) _ ";" { d };
         rule struct_declor(typ: &Node<DeclarationSpec<'input>>) -> StructItem<'input>
-            = item:declarator(typ)? _ ":" _ b:const_expr() { StructItem { typ: typ.clone(), item, bits: Some(b) } }
-            / d:declarator(typ) { StructItem { typ: typ.clone(), item: Some(d), bits: None } };
+            = item:declarator()? _ ":" _ b:const_expr() { StructItem { typ: typ.clone(), item, bits: Some(b) } }
+            / d:declarator() { StructItem { typ: typ.clone(), item: Some(d), bits: None } };
 
         rule enumerator() -> EnumItem<'input>
             = ident:ident() _ "=" _ expr:const_expr() { EnumItem { ident, number: Some(expr) } }
@@ -269,7 +269,7 @@ peg::parser! {
             / param:(param_decl() ** (_ "," _)) { ParamTypeList { param, more: false } };
 
         rule param_decl() -> Node<ParamDeclaration<'input>>
-            = l:position!() ds:declaration_spec() _ d:declarator(&ds) r:position!() { Node { node: ParamDeclaration {
+            = l:position!() ds:declaration_spec() _ d:declarator() r:position!() { Node { node: ParamDeclaration {
                 spec: ds,
                 decl: MayAbsDeclarator::NonAbs(d),
             }, span: l..r } }
@@ -310,26 +310,26 @@ peg::parser! {
 
         // 6.7
         rule declaration() -> Node<Declaration<'input>>
-            = s:position!() typ:declaration_spec() _ inits:(decl_item(&typ) ** (_ "," _)) _ ";" e:position!() {
+            = s:position!() typ:declaration_spec() _ inits:(decl_item() ** (_ "," _)) _ ";" e:position!() {
                 Node { node: Declaration { typ, inits }, span: s..e }
             };
-        rule decl_item(t: &Node<DeclarationSpec<'input>>) -> (Node<Declarator<'input>>, Option<Node<Initializer<'input>>>)
-            = quiet! { v:declarator(t) _ "=" _ i:initializer() { (v, Some(i)) } }
-            / quiet! { v:declarator(t) { (v, None) } }
+        rule decl_item() -> (Node<Declarator<'input>>, Option<Node<Initializer<'input>>>)
+            = quiet! { v:declarator() _ "=" _ i:initializer() { (v, Some(i)) } }
+            / quiet! { v:declarator() { (v, None) } }
             / expected!("declaration item");
 
-        rule declarator(t: &Node<DeclarationSpec<'input>>) -> Node<Declarator<'input>> = precedence! {
+        rule declarator() -> Node<Declarator<'input>> = precedence! {
             l:position!() "*" _ q:type_quals() _ d:@ { Node { span: l..d.span.end, node: Declarator::Pointer(Box::new(d), q) } }
             --
             d:@ _ "[" _ e:assign_expr()? _ "]" r:position!() { Node { span: d.span.start..r, node: Declarator::Array(Box::new(d), TypeQual::default(), e) } }
             d:@ _ "[" _ q:type_quals() ___ e:assign_expr()? _ "]" r:position!() { Node { span: d.span.start..r, node: Declarator::Array(Box::new(d), q, e) } }
             d:@ _ "(" _ p:param_type_list() _ ")" r:position!() { Node { span: d.span.start..r, node: Declarator::Function(Box::new(d), p) } }
             --
-            d:decl_ident(t) { d }
-            l:position!() "(" _ d:declarator(t) _ ")" r:position!() { Node { node: d.node, span: l..r } }
+            d:decl_ident() { d }
+            l:position!() "(" _ d:declarator() _ ")" r:position!() { Node { node: d.node, span: l..r } }
         };
-        rule decl_ident(t: &Node<DeclarationSpec<'input>>) -> Node<Declarator<'input>>
-            = l:position!() v:ident() r:position!() { Node { node: Declarator::Root(v, t.clone()), span: l..r } };
+        rule decl_ident() -> Node<Declarator<'input>>
+            = l:position!() v:ident() r:position!() { Node { node: Declarator::Root(v), span: l..r } };
 
         rule decl_spec_tokens() -> Vec<DeclSpecToken<'input>>
             = &("auto" __ / type_spec()) t:decl_spec_token() _ r:_decl_spec_tokens() { let mut r = r; r.push(t); r }
@@ -394,7 +394,7 @@ peg::parser! {
 
         // 6.9 ext defs
         rule external_decl() -> Node<ExternalDecl<'input>>
-            = l:position!() decl_spec:declaration_spec() _ declarator:declarator(&decl_spec) _ declarations:(declaration() ** _) _ body:compound_stmt() r:position!() {
+            = l:position!() decl_spec:declaration_spec() _ declarator:declarator() _ declarations:(declaration() ** _) _ body:compound_stmt() r:position!() {
                 Node { node: ExternalDecl::Function(FunctionDef { decl_spec: decl_spec.node, declarator, declarations, body }), span: l..r }
             }
             / d:declaration() { Node { span: d.span, node: ExternalDecl::Declaration(d.node) } };

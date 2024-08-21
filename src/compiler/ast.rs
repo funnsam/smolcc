@@ -242,7 +242,7 @@ pub struct Declaration<'a> {
 
 #[derive(Debug, Clone)]
 pub enum Declarator<'a> {
-    Root(&'a str, Node<DeclarationSpec<'a>>),
+    Root(&'a str),
     Pointer(Box<Node<Self>>, TypeQual),
     Array(Box<Node<Self>>, TypeQual, Option<Node<Expr<'a>>>),
     Function(Box<Node<Self>>, ParamTypeList<'a>),
