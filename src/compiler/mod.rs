@@ -1,48 +1,5 @@
-use core::fmt;
-
 pub mod ast;
-
-#[derive(Default, Debug, Clone, PartialEq, Eq)]
-pub struct LineAttr<'a> {
-    pub file: Option<&'a str>,
-    pub line: usize,
-    pub start: usize,
-}
-
-impl fmt::Display for LineAttr<'_> {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{}:{}", self.file.unwrap_or("<unknown>"), self.line)
-    }
-}
-
-peg::parser! {
-    pub grammar lines() for str {
-        pub rule find_lines() -> Vec<LineAttr<'input>>
-            = l:_find_lines(&LineAttr::default()) { l };
-        rule _find_lines(p: &LineAttr<'input>) -> Vec<LineAttr<'input>>
-            = start:position!() ![_] { vec![LineAttr { file: p.file, line: p.line + 1, start }] }
-            / l:line(p) r:_find_lines(&l) { [vec![l], r].concat() }
-            / l:line(p) { vec![l] };
-
-        rule _ = quiet! { [' ' | '\t']* };
-        rule __ = quiet! { [^ '\n']* "\n" };
-        rule ___ = quiet! { [^ '\n']* ("\n" / ![_]) };
-
-        rule line(p: &LineAttr<'input>) -> LineAttr<'input>
-            = start:position!() _ "#" _ "line"? _ line:pp_int() _ file:string_lit()? ___ { LineAttr { file, line: line.saturating_sub(1), start } }
-            / start:position!() __ { LineAttr { file: p.file, line: p.line + 1, start } };
-
-        rule string_lit() -> &'input str
-            = quiet! { _ "\"" s:$(s_char()*) "\"" _ { s } }
-            / expected!("string literal");
-        rule s_char()
-            = "\\" [_]
-            / [^ '\"'];
-
-        rule pp_int() -> usize
-            = n:$(['1'..='9']['0'..='9']*) {? n.parse().or(Err("value too big")) };
-    }
-}
+pub mod lines;
 
 peg::parser! {
     pub grammar parser() for str {

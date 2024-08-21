@@ -11,21 +11,18 @@ fn main() {
         .expect("failed to run gcc preprocessor");
     assert!(gcc.status.success());
     let src = String::from_utf8(gcc.stdout).unwrap();
+    println!("gcc done");
 
-    let lines = compiler::lines::find_lines(&src).unwrap();
+    let lines = compiler::lines::find_lines(&src);
     let r = compiler::parser::translation_unit(&src);
 
     match r {
         Ok(r) => println!("{r:#?}"),
         Err(e) => report(e, &src, &lines),
     }
-
-    // for l in lines.windows(2) {
-    //     println!("{:?} {}", l[0], &src[l[0].start..l[1].start]);
-    // }
 }
 
-fn report<'a>(e: peg::error::ParseError<peg::str::LineCol>, s: &'a str, lines: &[compiler::LineAttr<'a>]) {
+fn report<'a>(e: peg::error::ParseError<peg::str::LineCol>, s: &'a str, lines: &[compiler::lines::LineAttr<'a>]) {
     let line = &lines[e.location.line - 1];
     let nl_byte = lines.get(e.location.line).map_or(s.len(), |l| l.start);
 
