@@ -23,7 +23,9 @@ impl<'a> Codegen<'a> {
 
         if !self.errors.is_empty() { return Err(self.errors); }
 
+        println!("{}", self.builder);
         let p = self.builder.done();
+
         let p = arch::VCode::generate::<_, regalloc::graph::GraphAlloc<_>>(&p, arch::x86_64::X64Selector::new());
         p.emit_assembly(&mut std::io::stdout()).unwrap();
 
@@ -44,7 +46,6 @@ impl<'a> Codegen<'a> {
 
     fn compile_function(&mut self, func: &'a FunctionDef<'a>) {
         let (id, typ) = Type::from_spec_declarator(&func.decl_spec, &func.declarator);
-        println!("{id} {typ:?}");
 
         match &typ.node {
             Type::Function(rt, args, _) => {
@@ -69,8 +70,52 @@ impl<'a> Codegen<'a> {
                     rt.node.to_ssa_vtype(),
                 );
                 self.builder.position_at_function(func);
+
+                let b = self.builder.push_block();
+                self.builder.position_at_bb(b);
             }
             _ => self.errors.push((CodegenError::TypeMustBeFn, typ.span)),
+        }
+
+        for bi in func.body.iter() {
+            self.compile_block_item(bi);
+        }
+    }
+
+    fn compile_block_item(&mut self, bi: &Node<BlockItem<'a>>) {
+        match &bi.node {
+            BlockItem::Statement(Statement::Empty) => {},
+            BlockItem::Statement(Statement::Return(rv)) => {
+                let rv = rv.as_ref().map(|r| {
+                    let (v, t) = self.compile_expr(r);
+                    v.of_type(t.to_ssa_vtype().unwrap())
+                });
+                self.builder.set_ret(rv);
+            },
+            _ => todo!("{bi:?}"),
+        }
+    }
+
+    fn compile_expr(&mut self, expr: &Node<Expr<'a>>) -> (value::ValueId, Type<'a>) {
+        match &expr.node {
+            Expr::IntConst(ic) => {
+                let t = DeclarationSpec::int_const_type(ic);
+                let v = self.builder.push_int_const(t.base_type.int_size(), ic.value as _);
+                (v.id, Type::Root(t))
+            },
+            Expr::CharConst(CharConst { ch, wide: false }) => {
+                let t = const { &DeclarationSpec::base_type(BaseType::SInt) };
+                let v = self.builder.push_int_const(t.base_type.int_size(), *ch as _);
+                (v.id, Type::Root(t))
+            },
+            Expr::Comma(op) => {
+                for e in op.iter().take(op.len() - 1) {
+                    self.compile_expr(e);
+                }
+
+                self.compile_expr(op.last().unwrap())
+            },
+            _ => todo!("{expr:?}"),
         }
     }
 }

@@ -24,6 +24,9 @@ bitflags! {
         const U  = 1 << 0;
         const L  = 1 << 1;
         const LL = 1 << 2;
+
+        const UL  = Self::U.bits() | Self::L.bits();
+        const ULL = Self::U.bits() | Self::LL.bits();
     }
 }
 
@@ -178,7 +181,7 @@ pub struct EnumItem<'a> {
 }
 
 impl<'a> BaseType<'a> {
-    pub fn from_type_specs<TS: Iterator<Item = TypeSpec<'a>>>(mut ts: TS) -> Result<Self, &'static str> {
+    pub fn from_type_specs<TS: Iterator<Item = TypeSpec<'a>>>(ts: TS) -> Result<Self, &'static str> {
         let mut base = None;
         let mut shorts = 0;
         let mut longs = 0;
@@ -223,6 +226,33 @@ impl<'a> BaseType<'a> {
             (TypeSpec::Enum(s, i), 0, 0, false, false) => Ok(BaseType::Enum(s, i)),
             (TypeSpec::TypedefName(s), 0, 0, false, false) => Ok(BaseType::TypedefName(s)),
             _ => Err("no such type"),
+        }
+    }
+
+    pub fn int_fits(&self, i: u64) -> bool {
+        match self {
+            Self::SChar => i8::try_from(i).is_ok(),
+            Self::SShort => i16::try_from(i).is_ok(),
+            Self::SInt => i32::try_from(i).is_ok(),
+            Self::SLong => i32::try_from(i).is_ok(),
+            Self::SLongLong => i64::try_from(i).is_ok(),
+            Self::UChar => i8::try_from(i).is_ok(),
+            Self::UShort => i16::try_from(i).is_ok(),
+            Self::UInt => i32::try_from(i).is_ok(),
+            Self::ULong => i32::try_from(i).is_ok(),
+            Self::ULongLong => i64::try_from(i).is_ok(),
+            _ => panic!("called `int_fits()` on non-integer type `{self:?}`"),
+        }
+    }
+
+    pub fn int_size(&self) -> usize {
+        match self {
+            Self::SChar | Self::UChar => 8,
+            Self::SShort | Self::UShort => 16,
+            Self::SInt | Self::UInt => 32,
+            Self::SLong | Self::ULong => 32,
+            Self::SLongLong | Self::ULongLong => 64,
+            _ => panic!("called `int_size()` on non-integer type `{self:?}`"),
         }
     }
 }
@@ -353,4 +383,68 @@ pub enum Statement<'a> {
     Return(Option<Node<Expr<'a>>>),
 
     Empty,
+}
+
+impl<'a> DeclarationSpec<'a> {
+    pub const fn base_type(base_type: BaseType<'a>) -> Self {
+        DeclarationSpec { base_type, qual: TypeQual(0), storage: StorageClass(0), fn_spec: FunctionSpec(0) }
+    }
+}
+
+impl DeclarationSpec<'static> {
+    pub fn int_const_type(ic: &IntConst) -> &'static Self {
+        let typ: &'static [Self] = match (ic.suffix, ic.infer_unsigned) {
+            (IntSuffix(0), false) => const { &[
+                Self::base_type(BaseType::SInt),
+                Self::base_type(BaseType::SLong),
+                Self::base_type(BaseType::SLongLong),
+            ]},
+            (IntSuffix(0), true) => const { &[
+                Self::base_type(BaseType::SInt),
+                Self::base_type(BaseType::UInt),
+                Self::base_type(BaseType::SLong),
+                Self::base_type(BaseType::ULong),
+                Self::base_type(BaseType::SLongLong),
+                Self::base_type(BaseType::ULongLong),
+            ]},
+            (IntSuffix::U, _) => const { &[
+                Self::base_type(BaseType::UInt),
+                Self::base_type(BaseType::ULong),
+                Self::base_type(BaseType::ULongLong),
+            ]},
+            (IntSuffix::L, false) => const { &[
+                Self::base_type(BaseType::SLong),
+                Self::base_type(BaseType::SLongLong),
+            ]},
+            (IntSuffix::L, true) => const { &[
+                Self::base_type(BaseType::SLong),
+                Self::base_type(BaseType::ULong),
+                Self::base_type(BaseType::SLongLong),
+                Self::base_type(BaseType::ULongLong),
+            ]},
+            (IntSuffix::UL, _) => const { &[
+                Self::base_type(BaseType::ULong),
+                Self::base_type(BaseType::ULongLong),
+            ]},
+            (IntSuffix::LL, false) => const { &[
+                Self::base_type(BaseType::SLongLong),
+            ]},
+            (IntSuffix::LL, true) => const { &[
+                Self::base_type(BaseType::SLongLong),
+                Self::base_type(BaseType::ULongLong),
+            ]},
+            (IntSuffix::ULL, _) => const { &[
+                Self::base_type(BaseType::ULongLong),
+            ]},
+            _ => todo!("{ic:?}"),
+        };
+
+        for t in typ.iter() {
+            if t.base_type.int_fits(ic.value) {
+                return t;
+            }
+        }
+
+        panic!("wtf");
+    }
 }

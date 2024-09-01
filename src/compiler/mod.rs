@@ -52,12 +52,12 @@ peg::parser! {
 
         rule ll() = "ll" / "LL";
         rule int_suffix() -> IntSuffix
-            = ['u' | 'U']ll() { IntSuffix::U | IntSuffix::LL }
-            / ['u' | 'U']['l' | 'L'] { IntSuffix::U | IntSuffix::L }
+            = ['u' | 'U']ll() { IntSuffix::ULL }
+            / ['u' | 'U']['l' | 'L'] { IntSuffix::UL }
             / ['u' | 'U'] { IntSuffix::U }
-            / ll()['u' | 'U'] { IntSuffix::LL | IntSuffix::U }
+            / ll()['u' | 'U'] { IntSuffix::ULL }
             / ll() { IntSuffix::LL }
-            / ['l' | 'L']['u' | 'U'] { IntSuffix::L | IntSuffix::U }
+            / ['l' | 'L']['u' | 'U'] { IntSuffix::UL }
             / ['l' | 'L'] { IntSuffix::L };
 
         // 6.4.4.4 character constant
