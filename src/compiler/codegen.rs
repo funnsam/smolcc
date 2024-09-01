@@ -38,7 +38,7 @@ impl<'a> Codegen<'a> {
             ExternalDecl::Declaration(d) => {
                 for (v, i) in d.inits.iter() {
                     let (v, typ) = Type::from_spec_declarator(&d.typ, v);
-                    println!("{v} {typ:?}");
+                    println!("{v} {typ:?} {i:?}");
                 }
             },
         }
