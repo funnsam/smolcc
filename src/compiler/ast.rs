@@ -9,6 +9,12 @@ pub struct Node<T> {
     pub span: Span,
 }
 
+impl<T> Node<T> {
+    pub fn as_deref(&self) -> Node<&T> {
+        Node { node: &self.node, span: self.span.clone() }
+    }
+}
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct IntConst {
     pub value: u64,

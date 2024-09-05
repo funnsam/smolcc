@@ -1,3 +1,7 @@
+[workspace]
+resolver = "2"
+members = [".", "funnssa"]
+
 [package]
 name = "smolcc"
 version = "0.1.0"
@@ -6,6 +10,6 @@ edition = "2021"
 [dependencies]
 bitflags = "2.6.0"
 clap = { version = "4.5.16", features = ["derive"] }
-funnssa = { version = "0.1.0", path = "funnssa" }
+funnssa = { version = "0.1.0", path = "funnssa", features = ["arch-all"] }
 peg = "0.8.4"
 strum = "0.26.3"

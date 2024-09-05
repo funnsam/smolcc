@@ -13,7 +13,7 @@ impl fmt::Display for LineAttr<'_> {
     }
 }
 
-pub fn find_lines<'a>(src: &'a str) -> Vec<LineAttr<'a>> {
+pub fn find_lines(src: &str) -> Vec<LineAttr<'_>> {
     let mut lines = Vec::new();
 
     let mut file = None;
