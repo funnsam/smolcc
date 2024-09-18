@@ -145,8 +145,23 @@ impl<'a> Codegen<'a> {
 
                 self.compile_expr(op.last().unwrap().as_deref())
             },
+            Expr::Add(a, b) => {
+                let a = self.compile_expr(a.as_deref());
+                let b = self.compile_expr(b.as_deref());
+                let (a, b, t) = self.arith_type_coercion(a, b);
+                let a = a.of_type(t.to_ssa_vtype().unwrap());
+                let b = b.of_type(t.to_ssa_vtype().unwrap());
+
+                (self.builder.build_int_op(IntOp::Add, a.try_into().unwrap(), b.try_into().unwrap()).id, t)
+            },
             _ => todo!("{expr:?}"),
         }
+    }
+
+    fn arith_type_coercion(&mut self, (av, at): (value::ValueId, Type<'a>), (bv, bt): (value::ValueId, Type<'a>)) -> (value::ValueId, value::ValueId, Type<'a>) {
+        /*if at == bt { */return (av, bv, at); //}
+
+        todo!()
     }
 }
 

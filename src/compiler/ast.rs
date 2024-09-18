@@ -135,6 +135,28 @@ bitflags! {
     }
 }
 
+#[derive(Default, Debug, Clone, Copy, PartialEq, Eq)]
+pub struct StorageClass(pub u8);
+
+bitflags! {
+    impl StorageClass: u8 {
+        const TYPEDEF = 1 << 0;
+        const EXTERN = 1 << 1;
+        const STATIC = 1 << 2;
+        const AUTO = 1 << 3;
+        const REGISTER = 1 << 4;
+    }
+}
+
+#[derive(Default, Debug, Clone, Copy, PartialEq, Eq)]
+pub struct FunctionSpec(pub u8);
+
+bitflags! {
+    impl FunctionSpec: u8 {
+        const INLINE = 1 << 0;
+    }
+}
+
 pub(crate) enum DeclSpecToken<'a> {
     Spec(TypeSpec<'a>),
     Qual(TypeQual),
@@ -320,28 +342,6 @@ pub struct ParamDeclaration<'a> {
 pub enum MayAbsDeclarator<'a> {
     NonAbs(Node<Declarator<'a>>),
     AbsDecl(Option<Node<AbsDeclarator<'a>>>),
-}
-
-#[derive(Default, Debug, Clone, Copy, PartialEq, Eq)]
-pub struct StorageClass(pub u8);
-
-bitflags! {
-    impl StorageClass: u8 {
-        const TYPEDEF = 1 << 0;
-        const EXTERN = 1 << 1;
-        const STATIC = 1 << 2;
-        const AUTO = 1 << 3;
-        const REGISTER = 1 << 4;
-    }
-}
-
-#[derive(Default, Debug, Clone, Copy, PartialEq, Eq)]
-pub struct FunctionSpec(pub u8);
-
-bitflags! {
-    impl FunctionSpec: u8 {
-        const INLINE = 1 << 0;
-    }
 }
 
 #[derive(Debug, Clone)]
