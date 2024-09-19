@@ -1,0 +1,7 @@
+!print_num .print_num
+    psh r1
+    llod r1 sp 2
+    out %numb r1
+    out %text '\n'
+    pop r1
+ret

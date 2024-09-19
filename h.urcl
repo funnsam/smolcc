@@ -1,0 +1,48 @@
+bits 32
+minreg 8
+minstack 512
+mov r8 sp
+cal !_start
+hlt
+
+!_start .F0
+psh r8
+mov r8 sp
+sub sp r8 4
+mov r6 r5
+lstr sp 2 r6
+lstr sp 3 r6
+mov r6 r7
+lstr sp 1 r6
+..L0
+imm r4 1
+mov r3 r0
+imm r5 1000
+mov r2 r3
+mov r1 r4
+..L1
+mov r3 r1
+add r4 r1 r2
+psh r1
+cal .F1
+add sp sp 1
+setl r6 r1 r5
+lstr sp 0 r6
+llod r6 sp 0
+bnz ..L3 r6
+..L2
+mov r1 r0
+llod r6 sp 2
+mov r5 r6
+llod r6 sp 3
+llod r6 sp 1
+mov r7 r6
+mov sp r8
+pop r8
+ret
+..L3
+mov r2 r3
+mov r1 r4
+jmp ..L1
+
+@define .F1 !print_num
